@@ -249,6 +249,170 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/03/24/Android-第一个app/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jackkwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="N's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/24/Android-第一个app/" itemprop="url">Android -- 第一个app</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-24T21:03:32+08:00">
+                2019-03-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="建立一个新的project"><a href="#建立一个新的project" class="headerlink" title="建立一个新的project"></a>建立一个新的project</h2><pre><code>具体不谈如何安装Android Studio了，除了取消gradle安装外，基本是傻瓜式操作。
+直接开始新建project。首先第一个界面，选择phone and tablet，选basic app。
+</code></pre><img src="/2019/03/24/Android-第一个app/1.png">
+<pre><code>接下来是一些基本配置，包名啊什么的。底下有一个最小API级别，为了更好的兼容最好不要选太高的。然后点击finish。
+</code></pre><img src="/2019/03/24/Android-第一个app/2.png">
+<h2 id="gradle更新"><a href="#gradle更新" class="headerlink" title="gradle更新"></a>gradle更新</h2><pre><code>这一点似乎是很多新手会出现的问题，因为国外的镜像源实在太慢了。但我在建工程的过程中，有时候是能很快加载的
+（可能是因为挂了VPN）。但第一次建立时同样会出现更新半天没成功的问题。
+</code></pre><h3 id="手动更新gradle"><a href="#手动更新gradle" class="headerlink" title="手动更新gradle"></a>手动更新gradle</h3><pre><code>第一次建工程采用的是手动更新gradle的办法。找到工程目录下gradle/wrapper/gradle-wrapper.properties，编辑，看到如下信息：
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#Sun Mar 24 20:41:04 CST 2019</span><br><span class="line">distributionBase=GRADLE_USER_HOME</span><br><span class="line">distributionPath=wrapper/dists</span><br><span class="line">zipStoreBase=GRADLE_USER_HOME</span><br><span class="line">zipStorePath=wrapper/dists</span><br><span class="line">distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.1-all.zip</span><br></pre></td></tr></table></figure>
+<pre><code>要改的地方就是distributionUrl这个参数，改成自己从网上下载的gradle压缩包路径。
+注意：压缩包版本最好和原来的版本匹配，比如我这里就是gradle-4.10.1-all.zip。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#Fri Mar 22 16:37:51 CST 2019</span><br><span class="line">distributionBase=GRADLE_USER_HOME</span><br><span class="line">distributionPath=wrapper/dists</span><br><span class="line">zipStoreBase=GRADLE_USER_HOME</span><br><span class="line">zipStorePath=wrapper/dists</span><br><span class="line">distributionUrl=file:///C:/Users/49457/.gradle/wrapper/dists/gradle-4.10.1-all/455itskqi2qtf0v2sja68alqd/gradle-4.10.1-all.zip</span><br></pre></td></tr></table></figure>
+<pre><code>保存，退出。重启Adroid Studio，gradle会自动更新，速度很快的。
+</code></pre><h3 id="更新镜像源"><a href="#更新镜像源" class="headerlink" title="更新镜像源"></a>更新镜像源</h3><pre><code>但是这样每次都要修改太麻烦了，每次都得找以前的文件。于是我就想找找有啥一劳永逸的办法。
+找到一篇博客大致意思是说可以修改镜像源？真好最近再用linux，感觉还是很熟悉的。
+于是照着操作。找到Android Studio的安装目录下的 build.gradle.ftl 文件：
+C:\Java\Anroid studio\plugins\android\lib\templates\gradle-projects\NewAndroidProject\root
+使用管理员身份修改文件中的仓库地址，把aliyun的仓库放在第1位，记得要修改2处。
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">        maven&#123; url &apos;http://maven.aliyun.com/nexus/content/groups/public/&apos;&#125;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        maven&#123; url &apos;http://maven.aliyun.com/nexus/content/groups/public/&apos;&#125;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>保存退出。再新建一个工程。工程加载的时候点开processing，可以看到如下提示：
+</code></pre><img src="/2019/03/24/Android-第一个app/3.png">
+<pre><code>可以看到，系统现在已经从依赖aliyun进行下载了。并且速度很快，大概就是我打上一行字的时间就加载好了。
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2018/12/18/一次简单的前端练习/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -358,6 +522,12 @@
 <p>　　实在是不知道应该叫什么，姑且叫做页面划分吧，它的作用是规定该类元素宽度占其父元素的百分比。很强大的一个功能，能为排版省去很多事。</p>
 <h3 id="一些常用标签"><a href="#一些常用标签" class="headerlink" title="一些常用标签"></a>一些常用标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">	-webkit-box-sizing: border-box;</span><br><span class="line">	box-sizing: border-box;</span><br><span class="line">	-webkit-transition: 200ms;</span><br><span class="line">	-o-transition: 200ms;</span><br><span class="line">	transition: 200ms</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">	font-size: 14px;</span><br><span class="line">	background: #f9f9f9;</span><br><span class="line">	line-height: 1.7;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a &#123;</span><br><span class="line">	text-decoration: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">img &#123;</span><br><span class="line">	display: block;</span><br><span class="line">	max-width: 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>　　主要是设定了一些常用标签的属性，比如字体，背景等等，导航栏去掉下划线等等。目前比较疑惑的是做渐变的几个属性(*中的transition)，这些在应用中主要是对hover颜色变化等做一些过渡，但如何使用还需学习。</p>
+<h1 id="细节完善"><a href="#细节完善" class="headerlink" title="细节完善"></a>细节完善</h1><h3 id="导航栏"><a href="#导航栏" class="headerlink" title="导航栏"></a>导航栏</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;top-nav clear-float&quot;&gt;</span><br><span class="line">	&lt;div class=&apos;container&apos;&gt;</span><br><span class="line">		&lt;div class=&quot;fl&quot;&gt;</span><br><span class="line">			&lt;a class=&quot;item&quot; href=&quot;#&quot;&gt;首页&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;div class=&quot;fr&quot;&gt;</span><br><span class="line">			&lt;a class=&quot;item&quot; href=&quot;#&quot;&gt;我的订单&lt;/a&gt;</span><br><span class="line">			&lt;a class=&quot;item&quot; href=&quot;#&quot;&gt;收藏夹&lt;/a&gt;</span><br><span class="line">			&lt;a class=&quot;item&quot; href=&quot;#&quot;&gt;登陆&lt;/a&gt;</span><br><span class="line">			&lt;a class=&quot;item&quot; href=&quot;#&quot;&gt;注册&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.top-nav &#123;</span><br><span class="line">	background: #eee;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.top-nav .item &#123;</span><br><span class="line">	display: inline-block;</span><br><span class="line">	padding: 6px 10px;</span><br><span class="line">	color: #666;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.top-nav .item:hover &#123;</span><br><span class="line">	color: #333;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　这里比较值得记录的一点是inline-block，它相比于block的优势是能与其他元素共享一行，并且能够随着内容自动撑开，非常适合导航栏的展示。<br>　　none：<br><img src="./images/前端01-none.png" alt="image"><br>　　inline-block:<br><img src="./images/前端01-inlineblock.png" alt="image"><br>　　这样看起来就没有那么逼仄，舒服多了。</p>
+<h3 id="页面头部信息"><a href="#页面头部信息" class="headerlink" title="页面头部信息"></a>页面头部信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;header clear-float&quot;&gt;</span><br><span class="line">			&lt;div class=&apos;container&apos;&gt;</span><br><span class="line">				&lt;div class=&quot;col-2 logo&quot;&gt;</span><br><span class="line">					香菇街</span><br><span class="line">				&lt;/div&gt;</span><br><span class="line">				&lt;div class=&quot;col-5 search-bar&quot;&gt;</span><br><span class="line">					&lt;input type=&quot;text&quot;&gt;</span><br><span class="line">					&lt;button&gt;搜索&lt;/button&gt;</span><br><span class="line">				&lt;/div&gt;</span><br><span class="line">				&lt;div class=&quot;col-3 cart&quot;&gt;</span><br><span class="line">					&lt;a href=&quot;#&quot;&gt;我的购物车&lt;/a&gt;</span><br><span class="line">				&lt;/div&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">.header &#123;</span><br><span class="line">	padding: 20px 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .logo &#123;</span><br><span class="line">	font-size: 30px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .search-bar &#123;</span><br><span class="line">	border: 2px solid #dd182b;</span><br><span class="line">	background: #dd182b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .search-bar input,</span><br><span class="line">.header .search-bar button &#123;</span><br><span class="line">	display: block;</span><br><span class="line">	float: left;</span><br><span class="line">	border: 0;</span><br><span class="line">	padding: 10px;</span><br><span class="line">	outline: 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .search-bar input &#123;</span><br><span class="line">	width: 80%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .search-bar input:focus &#123;</span><br><span class="line">	-webkit-box-shadow: inset 0 0 2px 2px rgba(0,0,0,0.1);</span><br><span class="line">	box-shadow: inset 0 0 2px 2px rgba(0,0,0,0.1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .search-bar button &#123;</span><br><span class="line">	width: 20%;</span><br><span class="line">	background: #dd182b;</span><br><span class="line">	color: #fff;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .search-bar button:hover &#123;</span><br><span class="line">	background: #ce1829;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .cart &#123;</span><br><span class="line">	text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .cart a &#123;</span><br><span class="line">	float: right;</span><br><span class="line">	padding: 10px;</span><br><span class="line">	background: #fff;</span><br><span class="line">	border: 2px solid #eee;</span><br><span class="line">	width: 80%;</span><br><span class="line">	color: #dd182b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　这里值得说道的东西就很多了，先看看整体效果吧：<br><img src="./images/前端01-header.png" alt="header"></p>
 
           
         
@@ -439,7 +609,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -449,10 +619,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">1</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -498,7 +668,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
