@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="熟悉两个将来常用的linux命令管道命令管道标记为’|’。比如查找前缀为sys的文件：1ls | grep &amp;quot;sys*&amp;quot; 重定向将引号里的内容覆盖001文件，单个&amp;gt;表示覆盖：1Echo  “....” &amp;gt;001 两个&amp;gt;表示追加：Echo  “….” &amp;gt;&amp;gt;001">
+<meta name="description" content="熟悉两个将来常用的linux命令管道命令管道标记为’|’。比如查找前缀为sys的文件：ls | grep “sys*”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="大数据--节点配置">
 <meta property="og:url" content="http://salvationn.github.io/2019/03/27/大数据-节点配置/index.html">
 <meta property="og:site_name" content="N&#39;s Home">
-<meta property="og:description" content="熟悉两个将来常用的linux命令管道命令管道标记为’|’。比如查找前缀为sys的文件：1ls | grep &amp;quot;sys*&amp;quot; 重定向将引号里的内容覆盖001文件，单个&amp;gt;表示覆盖：1Echo  “....” &amp;gt;001 两个&amp;gt;表示追加：Echo  “….” &amp;gt;&amp;gt;001">
+<meta property="og:description" content="熟悉两个将来常用的linux命令管道命令管道标记为’|’。比如查找前缀为sys的文件：ls | grep “sys*”">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-29T09:51:57.991Z">
+<meta property="og:updated_time" content="2019-04-17T12:39:42.625Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据--节点配置">
-<meta name="twitter:description" content="熟悉两个将来常用的linux命令管道命令管道标记为’|’。比如查找前缀为sys的文件：1ls | grep &amp;quot;sys*&amp;quot; 重定向将引号里的内容覆盖001文件，单个&amp;gt;表示覆盖：1Echo  “....” &amp;gt;001 两个&amp;gt;表示追加：Echo  “….” &amp;gt;&amp;gt;001">
+<meta name="twitter:description" content="熟悉两个将来常用的linux命令管道命令管道标记为’|’。比如查找前缀为sys的文件：ls | grep “sys*”">
 
 
 
@@ -319,9 +319,9 @@
       
 
       
-        <h1 id="熟悉两个将来常用的linux命令"><a href="#熟悉两个将来常用的linux命令" class="headerlink" title="熟悉两个将来常用的linux命令"></a>熟悉两个将来常用的linux命令</h1><h3 id="管道命令"><a href="#管道命令" class="headerlink" title="管道命令"></a>管道命令</h3><p>管道标记为’|’。<br>比如查找前缀为sys的文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls | grep &quot;sys*&quot;</span><br></pre></td></tr></table></figure></p>
+        <h1 id="熟悉两个将来常用的linux命令"><a href="#熟悉两个将来常用的linux命令" class="headerlink" title="熟悉两个将来常用的linux命令"></a>熟悉两个将来常用的linux命令</h1><h3 id="管道命令"><a href="#管道命令" class="headerlink" title="管道命令"></a>管道命令</h3><p>管道标记为’|’。<br>比如查找前缀为sys的文件：<br>ls | grep “sys*”<br><a id="more"></a></p>
 <h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>将引号里的内容覆盖001文件，单个&gt;表示覆盖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Echo  “....” &gt;001</span><br></pre></td></tr></table></figure></p>
-<p>两个&gt;表示追加：<br>Echo  “….” &gt;&gt;001<br><a id="more"></a></p>
+<p>两个&gt;表示追加：<br>Echo  “….” &gt;&gt;001<br><!-- more--></p>
 <h1 id="三个节点正常访问（以hostname形式访问）"><a href="#三个节点正常访问（以hostname形式访问）" class="headerlink" title="三个节点正常访问（以hostname形式访问）"></a>三个节点正常访问（以hostname形式访问）</h1><p>以下配置需要在三个虚拟机上都进行配置：<br>首先需要将IP地址改成静态的，进行有线连接设置，设置ipv4地址，IP地址前三位不变，DNS不变，网关为255.255.255.0，保存，重启网络。<br>首先进入root账号,然后cd /etc/sysconfig<br>然后修改network文件，直接采用重定向。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Echo “NETWORKING=yes”&gt;&gt;network</span><br><span class="line">Echo “HOSTNAME=想设定的hostname”&gt;&gt;network</span><br></pre></td></tr></table></figure></p>
 <p>接下来修改hostname文件，记得和上面的hostname一样。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Echo “想设定的hostname”&gt;&gt;hostname</span><br></pre></td></tr></table></figure></p>
 <p>然后返回etc目录，向hosts文件追加三个节点的IP地址和hostname。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]# echo &quot;IP1 name1&quot;&gt;&gt;hosts</span><br><span class="line">[root@localhost etc]# echo &quot;ip2 name2&quot;&gt;&gt;hosts</span><br><span class="line">[root@localhost etc]# echo &quot;ip3 name3&quot;&gt;&gt;hosts</span><br></pre></td></tr></table></figure></p>
@@ -374,6 +374,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/17/大数据-hadoop安装/" rel="prev" title="大数据-hadoop安装">
+                大数据-hadoop安装 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -450,7 +454,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -461,7 +465,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
