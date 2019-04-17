@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="N&#39;s Home">
 <meta property="og:description" content="SpringMVC.xml1.component-scan1234&amp;lt;context:component-scan base-package=&amp;quot;com.infinite.times&amp;quot; use-default-filters=&amp;quot;false&amp;quot;&amp;gt;	&amp;lt;context:include-filter type=&amp;quot;annotation&amp;quot;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-26T13:43:27.837Z">
+<meta property="og:updated_time" content="2019-04-17T12:43:21.127Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC--几个配置文件">
 <meta name="twitter:description" content="SpringMVC.xml1.component-scan1234&amp;lt;context:component-scan base-package=&amp;quot;com.infinite.times&amp;quot; use-default-filters=&amp;quot;false&amp;quot;&amp;gt;	&amp;lt;context:include-filter type=&amp;quot;annotation&amp;quot;">
@@ -342,6 +342,7 @@
 
       
         <h1 id="SpringMVC-xml"><a href="#SpringMVC-xml" class="headerlink" title="SpringMVC.xml"></a>SpringMVC.xml</h1><h3 id="1-component-scan"><a href="#1-component-scan" class="headerlink" title="1.component-scan"></a>1.component-scan</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;context:component-scan base-package=&quot;com.infinite.times&quot; use-default-filters=&quot;false&quot;&gt;</span><br><span class="line">	&lt;context:include-filter type=&quot;annotation&quot; expression=&quot;org.springframework.stereotype.Controller&quot;/&gt;</span><br><span class="line">	&lt;context:include-filter type=&quot;annotation&quot; expression=&quot;org.springframework.web.bind.annotation.ControllerAdvice&quot;/&gt;</span><br><span class="line">&lt;/context:component-scan&gt;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>base-package是基本包名，use-default-filters表示是否使用默认过滤器，一般改为false，这样下面的filter才会生效。<br>底下的两个include是什么作用具体还不清楚。</p>
 <h3 id="2-lt-mvc-annotation-driven-gt"><a href="#2-lt-mvc-annotation-driven-gt" class="headerlink" title="2.&lt;mvc:annotation-driven /&gt;"></a>2.&lt;mvc:annotation-driven /&gt;</h3><p><a href="mvc:annotation-driven" target="_blank" rel="noopener">mvc:annotation-driven</a>会自动注册RequestMappingHandlerMapping与RequestMappingHandlerAdapter两个Bean,这是Spring MVC为@Controller分发请求所必需的，并且提供了数据绑定支持，@NumberFormatannotation支持，@DateTimeFormat支持,@Valid支持读写XML的支持（JAXB）和读写JSON的支持（默认Jackson）等功能。</p>
 <h3 id="3-mvc-default-servlet-handler"><a href="#3-mvc-default-servlet-handler" class="headerlink" title="3.mvc:default-servlet-handler/"></a>3.<a href="mvc:default-servlet-handler/" target="_blank" rel="noopener">mvc:default-servlet-handler/</a></h3><p>配置使用默认的Servlet来响应静态文件。</p>
