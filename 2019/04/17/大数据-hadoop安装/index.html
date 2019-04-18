@@ -88,7 +88,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://salvationn.github.io/2019/04/17/大数据-hadoop安装/1.png">
 <meta property="og:image" content="http://salvationn.github.io/2019/04/17/大数据-hadoop安装/2.png">
-<meta property="og:updated_time" content="2019-04-17T12:38:54.375Z">
+<meta property="og:updated_time" content="2019-04-18T04:21:29.599Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="大数据-hadoop安装">
 <meta name="twitter:description" content="安装java下载地址：http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html下载后文件目录是到/home/downloads目录进入到该目录，把tar包放到/usr/local/java下（需要新建）。mv .tar.gz /usr/local/java/解压 tar -xzvf .ta">
@@ -320,6 +320,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/17/大数据-hadoop安装/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/04/17/大数据-hadoop安装/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -347,15 +357,19 @@
         <h1 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装java</h1><p>下载地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a><br>下载后文件目录是到/home/downloads目录<br>进入到该目录，把tar包放到/usr/local/java下（需要新建）。<br>mv <strong><strong>.tar.gz /usr/local/java/<br>解压 tar -xzvf </strong></strong>.tar.gz<br>然后配置环境变量。这里我直接配置系统变量了。<br>vim /etc/profile<br>在末尾添加：<br><a id="more"></a><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JAVA_HOME=/usr/local/java/jdk1.8 </span><br><span class="line">JRE_HOME=/usr/local/java/jdk1.8/jre </span><br><span class="line">PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin </span><br><span class="line">CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib </span><br><span class="line">export JAVA_HOME JRE_HOME PATH CLASSPATH</span><br></pre></td></tr></table></figure></p>
 <p>然后使该配置生效：<br>Source /etc/profile</p>
 <h1 id="安装hadoop"><a href="#安装hadoop" class="headerlink" title="安装hadoop"></a>安装hadoop</h1><h3 id="下载并解压"><a href="#下载并解压" class="headerlink" title="下载并解压"></a>下载并解压</h3><p>解压Hadoop包：tar -xzfv hadoop-2.6.0.tar.gz<br>修改./etc/hadoop/hadoop-env.sh文件：<br>修改JAVA_HOME:JAVA_HOME=/usr/local/java/jdk1.8/<br>同样，需要在yarn-env.sh文件中修改export JAVA_HOME</p>
-<h3 id="配置核心组件core-site-xml"><a href="#配置核心组件core-site-xml" class="headerlink" title="配置核心组件core-site.xml"></a>配置核心组件core-site.xml</h3><p>下述文件配置均在hadoop-2.6.0/etc/hadoop目录下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt; </span><br><span class="line">  &lt;property&gt; </span><br><span class="line">    &lt;name&gt;fs.defaultFS&lt;/name&gt; </span><br><span class="line">    &lt;value&gt;hdfs://salvation1:9000&lt;/value&gt; </span><br><span class="line">  &lt;/property&gt; </span><br><span class="line">  &lt;porperty&gt; </span><br><span class="line">    &lt;name&gt;hadoop.tmp.dir&lt;/name&gt; </span><br><span class="line">    &lt;value&gt;/home/csu/hadoopdate&lt;/value&gt; </span><br><span class="line">  &lt;/property&gt; </span><br><span class="line">&lt;/configuration&gt; </span><br><span class="line">``` </span><br><span class="line">这里的csu代表的是用户名。</span><br><span class="line">### 配置hdfs-site.xml</span><br></pre></td></tr></table></figure></p>
-<p><configuration><br>  <name>dfs.replication</name><br>  <value>1</value><br></configuration><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### 配置yarn-site.xml</span><br></pre></td></tr></table></figure></p>
-<p><configuration><br><!-- Site specific YARN configuration properties --><br>  <property><br>    <name>yarn.nodemanager.aux-services</name><br>    <value>mapreduce_shuffle</value><br>  </property><br>  <property><br>    <name>yarn.resourcemanager.address</name><br>    <value>salvation1:18040</value><br>  </property><br>  <property><br>    <name>yarn.resourcemanager.scheduler.address</name><br>    <value>salvation1:18030</value><br>  </property><br>  <property><br>    <name>yarn.resourcemanager.resource-tracker.address</name><br>    <value>salvation1:18025</value><br>  </property><br>  <property> </property></configuration></p>
-<p><property><br>    <name>yarn.resourcemanager.admin.address</name><br>    <value>salvation1:18141</value><br>  </property><br>  <property><br>    <name>yarn.resourcemanager.webapp.address</name><br>    <value>salvation1:18088</value><br>  </property><br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### 配置mapred-site.xml(需复制原有文件)</span><br></pre></td></tr></table></figure></p>
-<p><configuration><br>  <property><br>    <name>mapreduce.framework.name</name><br>    <value>yarn</value><br>  </property><br></configuration><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">### 修改slaves文件，改成节点名称</span><br><span class="line">注意，只需添加另两台机器的目录即可。</span><br><span class="line"># 将hadoop拷贝到另两台机器上</span><br></pre></td></tr></table></figure></p>
-<p>scp -r hadoop-2.6.0 salvation2:~/<br>scp -r hadoop-2.6.0 salvation3:~/<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># hadoop变量配置（三台机器都需执行）</span><br><span class="line">首先检查三台虚拟机是否能够免密访问。 </span><br><span class="line">然后在其中一台虚拟机的家目录下新建一个临时文件hadoopsettmp </span><br><span class="line">echo &quot;#HADOOP PATH SET&quot; &gt; hadoopsettmp </span><br><span class="line">配置变量：</span><br></pre></td></tr></table></figure></p>
-<p>echo “export HADOOP_HOME=/home/centos/hadoop-2.6.0” &gt;&gt; hadoopsettmp<br>echo ‘export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH’ &gt;&gt; hadoopsettmp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">注：此处使用单引号（强引用），若使用双引号会直接执行export </span><br><span class="line">将临时文件拷贝到.bash_profile文件中</span><br></pre></td></tr></table></figure></p>
-<p>cat hadoopsettmp &gt;&gt; .bash_profile<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">并执行source命令 </span><br><span class="line">Source .bash_profile</span><br><span class="line">用scp命令将hadoopsettmp拷贝到另两个虚拟机的家目录下。同样需要将该文件追加到.bash_profile中，并执行source命令。</span><br><span class="line"># 格式化hdfs（在主节点执行）</span><br><span class="line">在hadoop-2.6.0/etc/hadoop目录下执行</span><br></pre></td></tr></table></figure></p>
-<p>hdfs namenode -format<br><code>`</code><br>显示hdfs not found，原因可能是source .bash_profile没有成功，重新执行一次，再次格式化，成功。</p>
+<h3 id="配置核心组件core-site-xml"><a href="#配置核心组件core-site-xml" class="headerlink" title="配置核心组件core-site.xml"></a>配置核心组件core-site.xml</h3><p>下述文件配置均在hadoop-2.6.0/etc/hadoop目录下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt; </span><br><span class="line">  &lt;property&gt; </span><br><span class="line">    &lt;name&gt;fs.defaultFS&lt;/name&gt; </span><br><span class="line">    &lt;value&gt;hdfs://salvation1:9000&lt;/value&gt; </span><br><span class="line">  &lt;/property&gt; </span><br><span class="line">  &lt;porperty&gt; </span><br><span class="line">    &lt;name&gt;hadoop.tmp.dir&lt;/name&gt; </span><br><span class="line">    &lt;value&gt;/home/csu/hadoopdate&lt;/value&gt; </span><br><span class="line">  &lt;/property&gt; </span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<p>这里的csu代表的是用户名。</p>
+<h3 id="配置hdfs-site-xml"><a href="#配置hdfs-site-xml" class="headerlink" title="配置hdfs-site.xml"></a>配置hdfs-site.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt; </span><br><span class="line">  &lt;name&gt;dfs.replication&lt;/name&gt; </span><br><span class="line">  &lt;value&gt;1&lt;/value&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="配置yarn-site-xml"><a href="#配置yarn-site-xml" class="headerlink" title="配置yarn-site.xml"></a>配置yarn-site.xml</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt; </span><br><span class="line">&lt;!-- Site specific YARN configuration properties --&gt; </span><br><span class="line">  &lt;property&gt; </span><br><span class="line">    &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt; </span><br><span class="line">    &lt;value&gt;mapreduce_shuffle&lt;/value&gt; </span><br><span class="line">  &lt;/property&gt; </span><br><span class="line">  &lt;property&gt; </span><br><span class="line">    &lt;name&gt;yarn.resourcemanager.address&lt;/name&gt; </span><br><span class="line">    &lt;value&gt;salvation1:18040&lt;/value&gt; </span><br><span class="line">  &lt;/property&gt; </span><br><span class="line">  &lt;property&gt; </span><br><span class="line">    &lt;name&gt;yarn.resourcemanager.scheduler.address&lt;/name&gt; </span><br><span class="line">    &lt;value&gt;salvation1:18030&lt;/value&gt; </span><br><span class="line">  &lt;/property&gt; </span><br><span class="line">  &lt;property&gt; </span><br><span class="line">    &lt;name&gt;yarn.resourcemanager.resource-tracker.address&lt;/name&gt; </span><br><span class="line">    &lt;value&gt;salvation1:18025&lt;/value&gt; </span><br><span class="line">  &lt;/property&gt; </span><br><span class="line">  &lt;property&gt; </span><br><span class="line">&lt;property&gt; </span><br><span class="line">    &lt;name&gt;yarn.resourcemanager.admin.address&lt;/name&gt; </span><br><span class="line">    &lt;value&gt;salvation1:18141&lt;/value&gt; </span><br><span class="line">  &lt;/property&gt; </span><br><span class="line">  &lt;property&gt; </span><br><span class="line">    &lt;name&gt;yarn.resourcemanager.webapp.address&lt;/name&gt; </span><br><span class="line">    &lt;value&gt;salvation1:18088&lt;/value&gt; </span><br><span class="line">  &lt;/property&gt; </span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="配置mapred-site-xml-需复制原有文件"><a href="#配置mapred-site-xml-需复制原有文件" class="headerlink" title="配置mapred-site.xml(需复制原有文件)"></a>配置mapred-site.xml(需复制原有文件)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;configuration&gt; </span><br><span class="line">  &lt;property&gt; </span><br><span class="line">    &lt;name&gt;mapreduce.framework.name&lt;/name&gt; </span><br><span class="line">    &lt;value&gt;yarn&lt;/value&gt; </span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">&lt;/configuration&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="修改slaves文件，改成节点名称"><a href="#修改slaves文件，改成节点名称" class="headerlink" title="修改slaves文件，改成节点名称"></a>修改slaves文件，改成节点名称</h3><p>注意，只需添加另两台机器的目录即可。</p>
+<h1 id="将hadoop拷贝到另两台机器上"><a href="#将hadoop拷贝到另两台机器上" class="headerlink" title="将hadoop拷贝到另两台机器上"></a>将hadoop拷贝到另两台机器上</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp -r hadoop-2.6.0 salvation2:~/ </span><br><span class="line">scp -r hadoop-2.6.0 salvation3:~/</span><br></pre></td></tr></table></figure>
+<h1 id="hadoop变量配置（三台机器都需执行）"><a href="#hadoop变量配置（三台机器都需执行）" class="headerlink" title="hadoop变量配置（三台机器都需执行）"></a>hadoop变量配置（三台机器都需执行）</h1><p>首先检查三台虚拟机是否能够免密访问。<br>然后在其中一台虚拟机的家目录下新建一个临时文件hadoopsettmp<br>echo “#HADOOP PATH SET” &gt; hadoopsettmp<br>配置变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;export HADOOP_HOME=/home/centos/hadoop-2.6.0&quot; &gt;&gt; hadoopsettmp </span><br><span class="line">echo &apos;export PATH=$HADOOP_HOME/bin:$HADOOP_HOME/sbin:$PATH&apos; &gt;&gt; hadoopsettmp</span><br></pre></td></tr></table></figure></p>
+<p>注：此处使用单引号（强引用），若使用双引号会直接执行export<br>将临时文件拷贝到.bash_profile文件中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat hadoopsettmp &gt;&gt; .bash_profile</span><br></pre></td></tr></table></figure></p>
+<p>并执行source命令<br>Source .bash_profile<br>用scp命令将hadoopsettmp拷贝到另两个虚拟机的家目录下。同样需要将该文件追加到.bash_profile中，并执行source命令。</p>
+<h1 id="格式化hdfs（在主节点执行）"><a href="#格式化hdfs（在主节点执行）" class="headerlink" title="格式化hdfs（在主节点执行）"></a>格式化hdfs（在主节点执行）</h1><p>在hadoop-2.6.0/etc/hadoop目录下执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hdfs namenode -format</span><br></pre></td></tr></table></figure></p>
+<p>显示hdfs not found，原因可能是source .bash_profile没有成功，重新执行一次，再次格式化，成功。</p>
 <h1 id="启动hadoop集群（在主节点执行）"><a href="#启动hadoop集群（在主节点执行）" class="headerlink" title="启动hadoop集群（在主节点执行）"></a>启动hadoop集群（在主节点执行）</h1><p>执行start-all.sh。启动后访问salvation：18088/cluster，发现active node只有1个，即只有本机连通了。<br>经过一番周折，重启多次，终于在日志文件中找到原因（日志文件在hadoop-2.6.0/logs中）：<br><img src="/2019/04/17/大数据-hadoop安装/1.png"><br>意思是说无法连接namenode节点。但namenode和datanode的免密连接是没有问题的，防火墙也关闭了。上网查找原因，发现根本原因在于无法连接到192.168.43.10：9000 对应ip的对应port。<br>查看一下namenode的port情况：<br>netstat -an | grep 9000<br><img src="/2019/04/17/大数据-hadoop安装/2.png"><br>发现只监听了本机（127.0.0.1）。网上的说法是ip解析的问题。<br>查看/etc/hosts，发现在localhost6那行的末尾多了一些奇怪的数字，可能是因为之前添加hosts时多打的。把多余部分删去。再重新执行，成功了。。。<br>但具体原因还是不清楚，是否因为该行的错误导致之后的host（即本机节点ip地址）没有被解析？但为什么免密登陆可以成功呢？<br>该问题留待解决</p>
 
       
@@ -417,6 +431,13 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
 
   
 
@@ -521,7 +542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装java"><span class="nav-number">1.</span> <span class="nav-text">安装java</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装hadoop"><span class="nav-number">2.</span> <span class="nav-text">安装hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载并解压"><span class="nav-number">2.0.1.</span> <span class="nav-text">下载并解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置核心组件core-site-xml"><span class="nav-number">2.0.2.</span> <span class="nav-text">配置核心组件core-site.xml</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#启动hadoop集群（在主节点执行）"><span class="nav-number">3.</span> <span class="nav-text">启动hadoop集群（在主节点执行）</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装java"><span class="nav-number">1.</span> <span class="nav-text">安装java</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装hadoop"><span class="nav-number">2.</span> <span class="nav-text">安装hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载并解压"><span class="nav-number">2.0.1.</span> <span class="nav-text">下载并解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置核心组件core-site-xml"><span class="nav-number">2.0.2.</span> <span class="nav-text">配置核心组件core-site.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置hdfs-site-xml"><span class="nav-number">2.0.3.</span> <span class="nav-text">配置hdfs-site.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置yarn-site-xml"><span class="nav-number">2.0.4.</span> <span class="nav-text">配置yarn-site.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置mapred-site-xml-需复制原有文件"><span class="nav-number">2.0.5.</span> <span class="nav-text">配置mapred-site.xml(需复制原有文件)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改slaves文件，改成节点名称"><span class="nav-number">2.0.6.</span> <span class="nav-text">修改slaves文件，改成节点名称</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#将hadoop拷贝到另两台机器上"><span class="nav-number">3.</span> <span class="nav-text">将hadoop拷贝到另两台机器上</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hadoop变量配置（三台机器都需执行）"><span class="nav-number">4.</span> <span class="nav-text">hadoop变量配置（三台机器都需执行）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#格式化hdfs（在主节点执行）"><span class="nav-number">5.</span> <span class="nav-text">格式化hdfs（在主节点执行）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#启动hadoop集群（在主节点执行）"><span class="nav-number">6.</span> <span class="nav-text">启动hadoop集群（在主节点执行）</span></a></li></div>
             
 
           </div>
@@ -712,6 +733,43 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'SalvationN',
+            repo: 'SalvationN.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '120574f3673100c4dae91a9957795b0c70cbb5ed',
+            
+                client_id: '82ba1b76abbc1646c509'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 
