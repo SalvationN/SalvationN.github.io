@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="熟悉两个将来常用的linux命令管道命令管道标记为’|’。比如查找前缀为sys的文件：ls | grep “sys*”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据--节点配置">
+<meta property="og:url" content="http://salvationn.github.io/2019/03/27/大数据-节点配置/index.html">
+<meta property="og:site_name" content="N&#39;s Home">
+<meta property="og:description" content="熟悉两个将来常用的linux命令管道命令管道标记为’|’。比如查找前缀为sys的文件：ls | grep “sys*”">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-17T12:45:24.076Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大数据--节点配置">
+<meta name="twitter:description" content="熟悉两个将来常用的linux命令管道命令管道标记为’|’。比如查找前缀为sys的文件：ls | grep “sys*”">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://salvationn.github.io/2019/03/27/大数据-节点配置/">
+
+
+
+
+
+  <title>大数据--节点配置 | N's Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">N's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/03/27/大数据-节点配置/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jackkwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="N's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">大数据--节点配置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T08:29:31+08:00">
+                2019-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="熟悉两个将来常用的linux命令"><a href="#熟悉两个将来常用的linux命令" class="headerlink" title="熟悉两个将来常用的linux命令"></a>熟悉两个将来常用的linux命令</h1><h3 id="管道命令"><a href="#管道命令" class="headerlink" title="管道命令"></a>管道命令</h3><p>管道标记为’|’。<br>比如查找前缀为sys的文件：<br>ls | grep “sys*”</p>
+<a id="more"></a>
+<h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>将引号里的内容覆盖001文件，单个&gt;表示覆盖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Echo  “....” &gt;001</span><br></pre></td></tr></table></figure></p>
+<p>两个&gt;表示追加：<br>Echo  “….” &gt;&gt;001</p>
+<h1 id="三个节点正常访问（以hostname形式访问）"><a href="#三个节点正常访问（以hostname形式访问）" class="headerlink" title="三个节点正常访问（以hostname形式访问）"></a>三个节点正常访问（以hostname形式访问）</h1><p>以下配置需要在三个虚拟机上都进行配置：<br>首先需要将IP地址改成静态的，进行有线连接设置，设置ipv4地址，IP地址前三位不变，DNS不变，网关为255.255.255.0，保存，重启网络。<br>首先进入root账号,然后cd /etc/sysconfig<br>然后修改network文件，直接采用重定向。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Echo “NETWORKING=yes”&gt;&gt;network</span><br><span class="line">Echo “HOSTNAME=想设定的hostname”&gt;&gt;network</span><br></pre></td></tr></table></figure></p>
+<p>接下来修改hostname文件，记得和上面的hostname一样。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Echo “想设定的hostname”&gt;&gt;hostname</span><br></pre></td></tr></table></figure></p>
+<p>然后返回etc目录，向hosts文件追加三个节点的IP地址和hostname。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost etc]# echo &quot;IP1 name1&quot;&gt;&gt;hosts</span><br><span class="line">[root@localhost etc]# echo &quot;ip2 name2&quot;&gt;&gt;hosts</span><br><span class="line">[root@localhost etc]# echo &quot;ip3 name3&quot;&gt;&gt;hosts</span><br></pre></td></tr></table></figure></p>
+<p>然后就可以通过ssh访问了。<br>PS:如果终端的hostname没有显示修改的hostname，则输入以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname &quot;想设定的hostname&quot;</span><br></pre></td></tr></table></figure></p>
+<h1 id="三个节点无密码访问"><a href="#三个节点无密码访问" class="headerlink" title="三个节点无密码访问"></a>三个节点无密码访问</h1><p>这个地方我配置了两天才成功。。主要还是没理解其中的原理，最后搞崩了，只能重装系统。<br>先说一下原理。Linux免密访问主要通过生成公钥和私钥，对应的文件是~/.ssh下的id_rsa.pub和id_rsa。id_rsa（私钥）主要实现本机免密访问。<br>生成公钥后通过生成与公钥相同的授权码来实现相互之间的免密访问。体现在文件中是~/.ssh下的authorized_keys。三台机器会生成三个授权码，<strong>每台机器的authorized_keys都必须有三台机器的授权码才能实现互通</strong>。</p>
+<h3 id="在第一台机器上"><a href="#在第一台机器上" class="headerlink" title="在第一台机器上"></a>在第一台机器上</h3><p>首先生成公钥和私钥。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
+<p>一路回车就可以。然后到~/.ssh目录下。首先生成一份本机（第一台机器）的授权码，授权码与公钥（id_rsa.pub）相同，用cat追加即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>接下来把这份授权码拷贝到第二台机器。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp authorized_keys root@hostname2:~/.ssh/</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：现在第二台机器的authorized_keys只包含第一台机器的授权码</strong></p>
+<h3 id="在第二台机器上"><a href="#在第二台机器上" class="headerlink" title="在第二台机器上"></a>在第二台机器上</h3><p>同样，生成公钥和私钥。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
+<p>然后把生成的公钥<strong>追加</strong>到现有的authorized_keys中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>PS:现在才深刻的理解到&gt;&gt;这个符号的含义。<br><strong>现在第二台机器的authorized_keys包含第一台机器和第二台机器的授权码</strong><br>接下来把这份授权码拷贝到第三台机器上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp authorized_keys root@hostname3:~/.ssh/</span><br></pre></td></tr></table></figure></p>
+<h3 id="在第三台机器上"><a href="#在第三台机器上" class="headerlink" title="在第三台机器上"></a>在第三台机器上</h3><p>同样，生成公钥和私钥。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
+<p>然后把生成的公钥<strong>追加</strong>到现有的authorized_keys中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>好了，<strong>现在的authorized_keys就是最终版本的authorized_keys，包含三台机器的授权码</strong>。接下来就要把这份授权码存到另外两台机器上<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp authorized_keys root@hostname2:~/.ssh/</span><br><span class="line">scp authorized_keys root@hostname1:~/.ssh/</span><br></pre></td></tr></table></figure></p>
+<h3 id="开启公钥访问配置"><a href="#开启公钥访问配置" class="headerlink" title="开启公钥访问配置"></a>开启公钥访问配置</h3><p>配置完公钥后，需要开启公钥访问。vi /etc/ssh/ssh_config，找到如下几个配置：<br>RSAAuthentication yes<br>PubkeyAuthentication yes<br>AuthorizedKeysFile  .ssh/authorized_keys<br>把前面的注释符去掉。如果找不到的话就把这几个加上去。<br>PS：经测验，其他的配置可以不改。</p>
+<h3 id="设置权限"><a href="#设置权限" class="headerlink" title="设置权限"></a>设置权限</h3><p>接下来还有很重要的一步：设置权限。因为.ssh文件夹下的每一个文件的访问都是有其相应的权限的，不进行设置的话ssh不会成功。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 700 ~/.ssh/authorized_keys</span><br><span class="line">chmod 600 ~/.ssh/</span><br></pre></td></tr></table></figure></p>
+<p>重启一下sshd，service sshd restart。解决。</p>
+<h3 id="一个小补充"><a href="#一个小补充" class="headerlink" title="一个小补充"></a>一个小补充</h3><p>这里碰到一个网络问题，稍微补充一下。<br>刚才ping了以下百度没ping上。经过一番折腾，发现是设置的IP地址和主机ip不在同一个网段。<br>主机的网段最好在控制面板上查。<br>不过这里有个问题就是，如果我主机换了不一样的网络，是否会造成虚拟机的ip又不能用了呢？</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/25/SpringMVC-几个配置文件/" rel="next" title="SpringMVC--几个配置文件">
+                <i class="fa fa-chevron-left"></i> SpringMVC--几个配置文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/17/大数据-hadoop安装/" rel="prev" title="大数据-hadoop安装">
+                大数据-hadoop安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jackkwin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#熟悉两个将来常用的linux命令"><span class="nav-number">1.</span> <span class="nav-text">熟悉两个将来常用的linux命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#管道命令"><span class="nav-number">1.0.1.</span> <span class="nav-text">管道命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重定向"><span class="nav-number">1.0.2.</span> <span class="nav-text">重定向</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#三个节点正常访问（以hostname形式访问）"><span class="nav-number">2.</span> <span class="nav-text">三个节点正常访问（以hostname形式访问）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三个节点无密码访问"><span class="nav-number">3.</span> <span class="nav-text">三个节点无密码访问</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在第一台机器上"><span class="nav-number">3.0.1.</span> <span class="nav-text">在第一台机器上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在第二台机器上"><span class="nav-number">3.0.2.</span> <span class="nav-text">在第二台机器上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在第三台机器上"><span class="nav-number">3.0.3.</span> <span class="nav-text">在第三台机器上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启公钥访问配置"><span class="nav-number">3.0.4.</span> <span class="nav-text">开启公钥访问配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置权限"><span class="nav-number">3.0.5.</span> <span class="nav-text">设置权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个小补充"><span class="nav-number">3.0.6.</span> <span class="nav-text">一个小补充</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jackkwin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

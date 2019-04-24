@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="css,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="万万没想到第一篇博客会是前端，最近突然对它燃起了兴趣，虽然估计很快就会结束，但能坚持两周我就很满意了。　　自己盘算了一下，后面想学的东西很多，又碍于考研复习，不知道有多少时间能写博客，且行且珍惜吧。 目标- 熟悉css各种属性以及参数 - 学会前端布局 - 学会处理一系列问题，使得页面更加和谐">
+<meta name="keywords" content="css">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次简单的前端练习">
+<meta property="og:url" content="http://salvationn.github.io/2018/12/18/一次简单的前端练习/index.html">
+<meta property="og:site_name" content="N&#39;s Home">
+<meta property="og:description" content="万万没想到第一篇博客会是前端，最近突然对它燃起了兴趣，虽然估计很快就会结束，但能坚持两周我就很满意了。　　自己盘算了一下，后面想学的东西很多，又碍于考研复习，不知道有多少时间能写博客，且行且珍惜吧。 目标- 熟悉css各种属性以及参数 - 学会前端布局 - 学会处理一系列问题，使得页面更加和谐">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://salvationn.github.io/2018/12/18/一次简单的前端练习/images/前端01-none.png">
+<meta property="og:image" content="http://salvationn.github.io/2018/12/18/一次简单的前端练习/images/前端01-inlineblock.png">
+<meta property="og:image" content="http://salvationn.github.io/2018/12/18/一次简单的前端练习/images/前端01-header.png">
+<meta property="og:updated_time" content="2019-04-17T12:42:51.345Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一次简单的前端练习">
+<meta name="twitter:description" content="万万没想到第一篇博客会是前端，最近突然对它燃起了兴趣，虽然估计很快就会结束，但能坚持两周我就很满意了。　　自己盘算了一下，后面想学的东西很多，又碍于考研复习，不知道有多少时间能写博客，且行且珍惜吧。 目标- 熟悉css各种属性以及参数 - 学会前端布局 - 学会处理一系列问题，使得页面更加和谐">
+<meta name="twitter:image" content="http://salvationn.github.io/2018/12/18/一次简单的前端练习/images/前端01-none.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://salvationn.github.io/2018/12/18/一次简单的前端练习/">
+
+
+
+
+
+  <title>一次简单的前端练习 | N's Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">N's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2018/12/18/一次简单的前端练习/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jackkwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="N's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一次简单的前端练习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T16:56:17+08:00">
+                2018-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　万万没想到第一篇博客会是前端，最近突然对它燃起了兴趣，虽然估计很快就会结束，但能坚持两周我就很满意了。<br>　　自己盘算了一下，后面想学的东西很多，又碍于考研复习，不知道有多少时间能写博客，且行且珍惜吧。</p>
+<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><pre><code>- 熟悉css各种属性以及参数
+- 学会前端布局
+- 学会处理一系列问题，使得页面更加和谐
+</code></pre><a id="more"></a>
+<h1 id="学习资料与模板"><a href="#学习资料与模板" class="headerlink" title="学习资料与模板"></a>学习资料与模板</h1><pre><code>- 学习资料为网易云课堂表严肃的css实战课
+- 模板是香菇街（？？有这玩意儿？？）
+- 好吧没有样例图
+</code></pre><h1 id="前置工作"><a href="#前置工作" class="headerlink" title="前置工作"></a>前置工作</h1><p>　　在布局之前做了一些前置工作，主要是把常用的属性先写上。</p>
+<h3 id="container"><a href="#container" class="headerlink" title="container"></a>container</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.container &#123;</span><br><span class="line">display: block;</span><br><span class="line">max-width: 1080px;</span><br><span class="line">margin: 0 auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　block规定元素的块级展示，而设置margin为0 auto则保证了所有container类的元素水平居中显示。</p>
+<h3 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">.fl &#123;</span><br><span class="line">	float: left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.fr &#123;</span><br><span class="line">	float: right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.clear-float:after,</span><br><span class="line">.clear-float:before &#123;</span><br><span class="line">	content: &apos; &apos;;</span><br><span class="line">	display: block;</span><br><span class="line">	clear: both;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　fl和fr是为了设定左右浮动，而clear-float:after和clear-float:before是常见的清除浮动方法，他们的存在可以使背景正常显示，并能将父元素的边框撑开并扩展。</p>
+<h3 id="水平划分"><a href="#水平划分" class="headerlink" title="水平划分"></a>水平划分</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">.col-1,</span><br><span class="line">.col-2,</span><br><span class="line">.col-3,</span><br><span class="line">.col-4,</span><br><span class="line">.col-5,</span><br><span class="line">.col-6,</span><br><span class="line">.col-7,</span><br><span class="line">.col-8,</span><br><span class="line">.col-9 &#123;</span><br><span class="line">	display: block;</span><br><span class="line">	position: relative;</span><br><span class="line">	min-height: 1px;</span><br><span class="line">	float: left;</span><br><span class="line">	word-wrap: break-word;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col-1 &#123;</span><br><span class="line">	width: 10%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.col-2 &#123;</span><br><span class="line">	width: 20%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+<p>　　实在是不知道应该叫什么，姑且叫做页面划分吧，它的作用是规定该类元素宽度占其父元素的百分比。很强大的一个功能，能为排版省去很多事。</p>
+<h3 id="一些常用标签"><a href="#一些常用标签" class="headerlink" title="一些常用标签"></a>一些常用标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">	-webkit-box-sizing: border-box;</span><br><span class="line">	box-sizing: border-box;</span><br><span class="line">	-webkit-transition: 200ms;</span><br><span class="line">	-o-transition: 200ms;</span><br><span class="line">	transition: 200ms</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">	font-size: 14px;</span><br><span class="line">	background: #f9f9f9;</span><br><span class="line">	line-height: 1.7;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">a &#123;</span><br><span class="line">	text-decoration: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">img &#123;</span><br><span class="line">	display: block;</span><br><span class="line">	max-width: 100%;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　主要是设定了一些常用标签的属性，比如字体，背景等等，导航栏去掉下划线等等。目前比较疑惑的是做渐变的几个属性(*中的transition)，这些在应用中主要是对hover颜色变化等做一些过渡，但如何使用还需学习。</p>
+<h1 id="细节完善"><a href="#细节完善" class="headerlink" title="细节完善"></a>细节完善</h1><h3 id="导航栏"><a href="#导航栏" class="headerlink" title="导航栏"></a>导航栏</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;top-nav clear-float&quot;&gt;</span><br><span class="line">	&lt;div class=&apos;container&apos;&gt;</span><br><span class="line">		&lt;div class=&quot;fl&quot;&gt;</span><br><span class="line">			&lt;a class=&quot;item&quot; href=&quot;#&quot;&gt;首页&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">		&lt;div class=&quot;fr&quot;&gt;</span><br><span class="line">			&lt;a class=&quot;item&quot; href=&quot;#&quot;&gt;我的订单&lt;/a&gt;</span><br><span class="line">			&lt;a class=&quot;item&quot; href=&quot;#&quot;&gt;收藏夹&lt;/a&gt;</span><br><span class="line">			&lt;a class=&quot;item&quot; href=&quot;#&quot;&gt;登陆&lt;/a&gt;</span><br><span class="line">			&lt;a class=&quot;item&quot; href=&quot;#&quot;&gt;注册&lt;/a&gt;</span><br><span class="line">		&lt;/div&gt;</span><br><span class="line">	&lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">.top-nav &#123;</span><br><span class="line">	background: #eee;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.top-nav .item &#123;</span><br><span class="line">	display: inline-block;</span><br><span class="line">	padding: 6px 10px;</span><br><span class="line">	color: #666;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.top-nav .item:hover &#123;</span><br><span class="line">	color: #333;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　这里比较值得记录的一点是inline-block，它相比于block的优势是能与其他元素共享一行，并且能够随着内容自动撑开，非常适合导航栏的展示。<br>　　none：<br><img src="./images/前端01-none.png" alt="image"><br>　　inline-block:<br><img src="./images/前端01-inlineblock.png" alt="image"><br>　　这样看起来就没有那么逼仄，舒服多了。</p>
+<h3 id="页面头部信息"><a href="#页面头部信息" class="headerlink" title="页面头部信息"></a>页面头部信息</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;header clear-float&quot;&gt;</span><br><span class="line">			&lt;div class=&apos;container&apos;&gt;</span><br><span class="line">				&lt;div class=&quot;col-2 logo&quot;&gt;</span><br><span class="line">					香菇街</span><br><span class="line">				&lt;/div&gt;</span><br><span class="line">				&lt;div class=&quot;col-5 search-bar&quot;&gt;</span><br><span class="line">					&lt;input type=&quot;text&quot;&gt;</span><br><span class="line">					&lt;button&gt;搜索&lt;/button&gt;</span><br><span class="line">				&lt;/div&gt;</span><br><span class="line">				&lt;div class=&quot;col-3 cart&quot;&gt;</span><br><span class="line">					&lt;a href=&quot;#&quot;&gt;我的购物车&lt;/a&gt;</span><br><span class="line">				&lt;/div&gt;</span><br><span class="line">			&lt;/div&gt;</span><br><span class="line">		&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">.header &#123;</span><br><span class="line">	padding: 20px 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .logo &#123;</span><br><span class="line">	font-size: 30px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .search-bar &#123;</span><br><span class="line">	border: 2px solid #dd182b;</span><br><span class="line">	background: #dd182b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .search-bar input,</span><br><span class="line">.header .search-bar button &#123;</span><br><span class="line">	display: block;</span><br><span class="line">	float: left;</span><br><span class="line">	border: 0;</span><br><span class="line">	padding: 10px;</span><br><span class="line">	outline: 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .search-bar input &#123;</span><br><span class="line">	width: 80%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .search-bar input:focus &#123;</span><br><span class="line">	-webkit-box-shadow: inset 0 0 2px 2px rgba(0,0,0,0.1);</span><br><span class="line">	box-shadow: inset 0 0 2px 2px rgba(0,0,0,0.1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .search-bar button &#123;</span><br><span class="line">	width: 20%;</span><br><span class="line">	background: #dd182b;</span><br><span class="line">	color: #fff;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .search-bar button:hover &#123;</span><br><span class="line">	background: #ce1829;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .cart &#123;</span><br><span class="line">	text-align: center;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">.header .cart a &#123;</span><br><span class="line">	float: right;</span><br><span class="line">	padding: 10px;</span><br><span class="line">	background: #fff;</span><br><span class="line">	border: 2px solid #eee;</span><br><span class="line">	width: 80%;</span><br><span class="line">	color: #dd182b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>　　这里值得说道的东西就很多了，先看看整体效果吧：<br><img src="./images/前端01-header.png" alt="header"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/24/Android-第一个app/" rel="prev" title="Android -- 第一个app">
+                Android -- 第一个app <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jackkwin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目标"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#学习资料与模板"><span class="nav-number">2.</span> <span class="nav-text">学习资料与模板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前置工作"><span class="nav-number">3.</span> <span class="nav-text">前置工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#container"><span class="nav-number">3.0.1.</span> <span class="nav-text">container</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浮动"><span class="nav-number">3.0.2.</span> <span class="nav-text">浮动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#水平划分"><span class="nav-number">3.0.3.</span> <span class="nav-text">水平划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些常用标签"><span class="nav-number">3.0.4.</span> <span class="nav-text">一些常用标签</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#细节完善"><span class="nav-number">4.</span> <span class="nav-text">细节完善</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#导航栏"><span class="nav-number">4.0.1.</span> <span class="nav-text">导航栏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#页面头部信息"><span class="nav-number">4.0.2.</span> <span class="nav-text">页面头部信息</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jackkwin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
