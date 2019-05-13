@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="决策树的原理较为简单，表示起来和数据结构中的图没有什么区别。 决策树的构造决策树的构造需要解决的第一个问题就是：如何选择划分的依据呢？即，如何选择划分数据分类的特征？《机器学习实战》中介绍了ID3算法–迭代二叉树3代。这个算法的核心思想是利用信息增益来度量属性的选择。 信息增益首先需要知道两个定义。如果待分类的事务可能划分在多个类中（即该事务不属于同一个分类，这是决策树停止划分的条件），则：  x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习-决策树">
+<meta property="og:url" content="http://salvationn.github.io/2019/05/13/机器学习-决策树/index.html">
+<meta property="og:site_name" content="N&#39;s Home">
+<meta property="og:description" content="决策树的原理较为简单，表示起来和数据结构中的图没有什么区别。 决策树的构造决策树的构造需要解决的第一个问题就是：如何选择划分的依据呢？即，如何选择划分数据分类的特征？《机器学习实战》中介绍了ID3算法–迭代二叉树3代。这个算法的核心思想是利用信息增益来度量属性的选择。 信息增益首先需要知道两个定义。如果待分类的事务可能划分在多个类中（即该事务不属于同一个分类，这是决策树停止划分的条件），则：  x">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://salvationn.github.io/2019/05/13/机器学习-决策树/1.png">
+<meta property="og:image" content="http://salvationn.github.io/2019/05/13/机器学习-决策树/2.png">
+<meta property="og:image" content="http://salvationn.github.io/2019/05/13/机器学习-决策树/3.png">
+<meta property="og:image" content="http://salvationn.github.io/2019/05/13/机器学习-决策树/4.png">
+<meta property="og:updated_time" content="2019-05-13T11:55:35.257Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习-决策树">
+<meta name="twitter:description" content="决策树的原理较为简单，表示起来和数据结构中的图没有什么区别。 决策树的构造决策树的构造需要解决的第一个问题就是：如何选择划分的依据呢？即，如何选择划分数据分类的特征？《机器学习实战》中介绍了ID3算法–迭代二叉树3代。这个算法的核心思想是利用信息增益来度量属性的选择。 信息增益首先需要知道两个定义。如果待分类的事务可能划分在多个类中（即该事务不属于同一个分类，这是决策树停止划分的条件），则：  x">
+<meta name="twitter:image" content="http://salvationn.github.io/2019/05/13/机器学习-决策树/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://salvationn.github.io/2019/05/13/机器学习-决策树/">
+
+
+
+
+
+  <title>机器学习-决策树 | N's Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">N's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/05/13/机器学习-决策树/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jackkwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="N's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习-决策树</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-13T19:42:56+08:00">
+                2019-05-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>决策树的原理较为简单，表示起来和数据结构中的图没有什么区别。</p>
+<h1 id="决策树的构造"><a href="#决策树的构造" class="headerlink" title="决策树的构造"></a>决策树的构造</h1><p>决策树的构造需要解决的第一个问题就是：如何选择划分的依据呢？即，如何选择划分数据分类的特征？<br>《机器学习实战》中介绍了ID3算法–迭代二叉树3代。这个算法的核心思想是利用<strong>信息增益</strong>来度量属性的选择。</p>
+<h2 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h2><p>首先需要知道两个定义。如果待分类的事务可能划分在多个类中（即该事务不属于同一个分类，这是决策树停止划分的条件），则：</p>
+<ol>
+<li>xi的信息定义为<strong>L(xi)=-log2p(xi)</strong> 。其中，p(xi)为选择该分类的概率。</li>
+<li>熵 <strong>H = -Σ(i=1~n)p(xi)log2p(xi)</strong> 。<br>根据这个公式写出计算香农熵的代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 计算熵</span><br><span class="line">from math import log</span><br><span class="line">def calShannonEnt(dataset):</span><br><span class="line">    numEntries = len(dataset)  #数据总数</span><br><span class="line">    labelCounts = &#123;&#125;  #计算各个分类的总量</span><br><span class="line">    for i in dataset:</span><br><span class="line">        currLabel = i[-1]  #获取当前标签</span><br><span class="line">        if currLabel not in labelCounts:</span><br><span class="line">            labelCounts[currLabel] = 0  </span><br><span class="line">        labelCounts[currLabel]+=1   #统计标签出现次数</span><br><span class="line">    shannonEnt = 0.0</span><br><span class="line">    for i in labelCounts:</span><br><span class="line">        prob = float(labelCounts[i])/numEntries</span><br><span class="line">        shannonEnt -= prob * log(prob,2)  #按照公式计算</span><br><span class="line">    return shannonEnt</span><br><span class="line"></span><br><span class="line">#测试calShannonEnt函数</span><br><span class="line">data = [[1,1,&apos;yes&apos;],[1,1,&apos;yes&apos;],[1,0,&apos;no&apos;],[0,1,&apos;no&apos;],[0,1,&apos;no&apos;]]</span><br><span class="line">calShannonEnt(data)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<img src="/2019/05/13/机器学习-决策树/1.png">
+<p>熵反映了一个数据集的无序程度。换句话说，熵越高，则混合的数据就越多。（浅显的理解就是分类越多熵越高）</p>
+<h2 id="划分数据集"><a href="#划分数据集" class="headerlink" title="划分数据集"></a>划分数据集</h2><ol>
+<li>首先，先完成一个按照给定特征划分数据集的程序<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 按给定特征划分数据集</span><br><span class="line">def splitDataSet(dataset,axis,value):  #dataset是数据集，axis是给定的特征，value是期望的该特征的值</span><br><span class="line">    newDataSet = []</span><br><span class="line">    for data in dataset:</span><br><span class="line">        if data[axis] == value:  #如果该条数据的axis值等于value</span><br><span class="line">            reducedData = data[:axis]  #去掉该特征</span><br><span class="line">            reducedData.extend(data[axis+1:])  #以上两步实际上相当于pandas的drop</span><br><span class="line">            newDataSet.append(reducedData)</span><br><span class="line">    return newDataSet</span><br><span class="line"></span><br><span class="line">#将上述data数据按照第0维特征划分</span><br><span class="line">print(splitDataSet(data,0,0))  #第0维特征等于0</span><br><span class="line">print(splitDataSet(data,0,1))  #第0维特征等于1</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<img src="/2019/05/13/机器学习-决策树/2.png">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># 选择最佳的属性以划分数据集</span><br><span class="line">def chooseBestFeatureToSplit(dataset):</span><br><span class="line">    numFeatures = len(dataset[0]) - 1  #计算特征维度</span><br><span class="line">    baseEntropy = calShannonEnt(dataset)</span><br><span class="line">    bestInfoGain = 0.0</span><br><span class="line">    bestFeatrue = -1</span><br><span class="line">    for i in range(numFeatures):</span><br><span class="line">        featureList = [example[i] for example in dataset]  #对于每一个特征（i），取出其所有可能的取值</span><br><span class="line">        featureSet = set(featureList)  #唯一化特征的取值</span><br><span class="line">        newEntropy = 0.0</span><br><span class="line">        for value in featureSet:</span><br><span class="line">            splitdataset = splitDataSet(dataset,i,value)  #对于第i个特征，将其按照所有的取值value划分数据集</span><br><span class="line">            prob = len(splitdataset)/float(len(dataset))  #计算取value时所占总数据集比例</span><br><span class="line">            newEntropy += calShannonEnt(splitdataset) * prob </span><br><span class="line">            #计算新的香农熵，划分后的信息熵需要乘上每种划分的概率</span><br><span class="line">            infoGain = baseEntropy - newEntropy  #计算信息受益</span><br><span class="line">        if infoGain &gt; bestInfoGain:</span><br><span class="line">            bestInfoGain = infoGain</span><br><span class="line">            bestFeature = i  #找到获得最高信息受益的特征</span><br><span class="line">    return bestFeature</span><br><span class="line"></span><br><span class="line">chooseBestFeatureToSplit(data)</span><br></pre></td></tr></table></figure>
+<img src="/2019/05/13/机器学习-决策树/3.png">
+<ol start="3">
+<li>递归创建树<br>下面这个函数是给决策树设定的第二个停止递归条件：当所有的特征都用完时，若还未能将数据集完全分类，选择该子集中分类最多的类别作为该集合的分类，这点有点像k近邻的最后一步。而下面这个函数的处理流程和上一节的classify0也十分相似，因此不再做批注。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def majorityCnt(classList):</span><br><span class="line">    classCount=&#123;&#125;</span><br><span class="line">    for vote in classList:</span><br><span class="line">        if vote not in classCount.keys():</span><br><span class="line">            classCount[vote]=0</span><br><span class="line">        classCount[vote] +=1</span><br><span class="line">    sortedClassCount = sorted(classCount.items(),key=operator.itemgetter(1),reverse=True)</span><br><span class="line">    return sortedClassCount[0][0]</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#创建递归树</span><br><span class="line">def createTree(dataset,labels):</span><br><span class="line">    classlist = [example[-1] for example in dataset]   #获取当前数据集的所有类别</span><br><span class="line">    if classlist.count(classlist[0]) == len(classlist):   #如果列表中第一个值(classlist[0])的个数等于列表长度，换言之，所有数据的分类相同</span><br><span class="line">        return classlist[0]</span><br><span class="line">    if len(dataset[0]) == 1:  #数据集的特征只剩下一个，换言之，所有特征都已使用完，并且还不能使数据集完全分类(因为没有触发第一个停止条件)</span><br><span class="line">        return majorityCnt(classList)</span><br><span class="line">    bestFeat = chooseBestFeatureToSplit(dataset)</span><br><span class="line">    bestFeatLabel = labels[bestFeat]</span><br><span class="line">    myTree = &#123;bestFeatLabel:&#123;&#125;&#125;</span><br><span class="line">    del(labels[bestFeat])</span><br><span class="line">    #这里开始就和之前的思路一样了，找出选择的最好特征值的所有取值，按每一个取值划分数据集。对于每一个划分后的子数据集，都重新构建一个子树。</span><br><span class="line">    featLabels = [example[bestFeat] for example in dataset]</span><br><span class="line">    uniqueVals = set(featLabels)</span><br><span class="line">    for value in uniqueVals:</span><br><span class="line">        subLabels = labels[:]</span><br><span class="line">        myTree[bestFeatLabel][value] = createTree(splitDataSet(dataset,bestFeat,value),subLabels)</span><br><span class="line">    return myTree</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">labels = [&apos;no surfacing&apos;,&apos;flippers&apos;]</span><br><span class="line">myTree = createTree(data,labels)</span><br><span class="line">print(myTree)</span><br></pre></td></tr></table></figure>
+<img src="/2019/05/13/机器学习-决策树/4.png">
+<p>注：决策树虽然原理简单，但要实现起来还是由很多细节要注意，也有很多工程上的trick值得学习。今天收获不少，希望明天能够再将决策树这一节好好消化。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/12/机器学习-k近邻/" rel="next" title="机器学习-k近邻">
+                <i class="fa fa-chevron-left"></i> 机器学习-k近邻
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jackkwin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#决策树的构造"><span class="nav-number">1.</span> <span class="nav-text">决策树的构造</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#信息增益"><span class="nav-number">1.1.</span> <span class="nav-text">信息增益</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#划分数据集"><span class="nav-number">1.2.</span> <span class="nav-text">划分数据集</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jackkwin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
