@@ -79,13 +79,19 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="N&#39;s Home">
-<meta property="og:url" content="http://salvationn.github.io/categories/大数据/index.html">
+<meta name="description" content="Logistic回归要解决的问题虽然名称是Logistic回归，但这个算法实际上要解决的问题是分类问题（主要是二分类）。当然，它与线性回归也有相似之处：他们的输入都是权重与自变量的线性组合即$W^TX+b$。Logostic回归的独特性在于，它采用了sigmoid函数将输入映射到0-1的区间内。然后以类似概率的方式进行0，1分类。 sigmoid函数sigmoid的图像如下图：它的特点是：自变量取">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习-Logistic回归">
+<meta property="og:url" content="http://salvationn.github.io/2019/05/19/机器学习-Logistic回归/index.html">
 <meta property="og:site_name" content="N&#39;s Home">
+<meta property="og:description" content="Logistic回归要解决的问题虽然名称是Logistic回归，但这个算法实际上要解决的问题是分类问题（主要是二分类）。当然，它与线性回归也有相似之处：他们的输入都是权重与自变量的线性组合即$W^TX+b$。Logostic回归的独特性在于，它采用了sigmoid函数将输入映射到0-1的区间内。然后以类似概率的方式进行0，1分类。 sigmoid函数sigmoid的图像如下图：它的特点是：自变量取">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://salvationn.github.io/2019/05/19/机器学习-Logistic回归/1.png">
+<meta property="og:updated_time" content="2019-05-20T12:51:07.810Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="N&#39;s Home">
+<meta name="twitter:title" content="机器学习-Logistic回归">
+<meta name="twitter:description" content="Logistic回归要解决的问题虽然名称是Logistic回归，但这个算法实际上要解决的问题是分类问题（主要是二分类）。当然，它与线性回归也有相似之处：他们的输入都是权重与自变量的线性组合即$W^TX+b$。Logostic回归的独特性在于，它采用了sigmoid函数将输入映射到0-1的区间内。然后以类似概率的方式进行0，1分类。 sigmoid函数sigmoid的图像如下图：它的特点是：自变量取">
+<meta name="twitter:image" content="http://salvationn.github.io/2019/05/19/机器学习-Logistic回归/1.png">
 
 
 
@@ -115,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://salvationn.github.io/categories/大数据/">
+  <link rel="canonical" href="http://salvationn.github.io/2019/05/19/机器学习-Logistic回归/">
 
 
 
 
 
-  <title>分类: 大数据 | N's Home</title>
+  <title>机器学习-Logistic回归 | N's Home</title>
   
 
 
@@ -140,7 +146,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -234,105 +240,171 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block category">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>大数据<small>分类</small>
-        </h1>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/05/19/机器学习-Logistic回归/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jackkwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="N's Home">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/04/29/大数据-eclipse安装hadoop插件/" itemprop="url">
-              
-                <span itemprop="name">大数据-eclipse安装hadoop插件</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">机器学习-Logistic回归</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-29T19:27:37+08:00" content="2019-04-29">
-          04-29
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-19T19:58:10+08:00">
+                2019-05-19
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/04/17/大数据-hadoop安装/" itemprop="url">
-              
-                <span itemprop="name">大数据-hadoop安装</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-17T20:03:24+08:00" content="2019-04-17">
-          04-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/03/27/大数据-节点配置/" itemprop="url">
-              
-                <span itemprop="name">大数据--节点配置</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-27T08:29:31+08:00" content="2019-03-27">
-          03-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h1 id="Logistic回归要解决的问题"><a href="#Logistic回归要解决的问题" class="headerlink" title="Logistic回归要解决的问题"></a>Logistic回归要解决的问题</h1><p>虽然名称是Logistic回归，但这个算法实际上要解决的问题是分类问题（主要是二分类）。当然，它与线性回归也有相似之处：他们的输入都是权重与自变量的线性组合即$W^TX+b$。Logostic回归的独特性在于，它采用了sigmoid函数将输入映射到0-1的区间内。然后以类似概率的方式进行0，1分类。</p>
+<h1 id="sigmoid函数"><a href="#sigmoid函数" class="headerlink" title="sigmoid函数"></a>sigmoid函数</h1><p>sigmoid的图像如下图：<br><img src="/2019/05/19/机器学习-Logistic回归/1.png"><br>它的特点是：自变量取值范围是正无穷到负无穷，而因变量的取值正好是0-1。同时，当取x取零点的一个足够小的取心邻域时，会发现此时sigmoid函数十分接近0-1函数。正可能也是为什么sigmoid函数可以用作logistic回归的转换函数的原因之一。<br>由于Logistic回归要使用梯度上升（下降）来得到最佳的参数（原因在后面），因此将会用到sigmoid的导数。求导的过程如下：<br>$$<br>\begin{aligned} g^{\prime}(z) &amp;=\frac{d}{d z} \frac{1}{1+e^{-z}}<br>\\ &amp;=\frac{1}{\left(1+e^{-z}\right)^{2}}\left(e^{-z}\right)<br>\\ &amp;=\frac{1}{\left(1+e^{-z}\right)^{2}} \cdot\left(1-\frac{1}{\left(1+e^{-z}\right)}\right) \\ &amp;=g(z)(1-g(z)) \end{aligned}<br>$$</p>
+<h1 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h1><p>下面是logistic回归的损失函数：<br>$$<br>\mathrm{L}(\hat{\mathrm{y}}, \mathrm{y})=-\mathrm{y} \log (\hat{\mathrm{y}})-(1-\mathrm{y}) \log (1-\hat{\mathrm{y}})<br>$$<br>为什么损失函数是这样的呢？<br>我们假定输入样本x，用y^表示训练样本x条件下预测y=1的概率，对应的，用1-y^表示训练样本x条件下预测y=0的概率，也就是说：<br>$$<br>\begin{array}{l}{\text { if } \mathrm{y}=1 : \mathrm{p}(\mathrm{y} | \mathrm{x})=\hat{\mathrm{y}}} \\ {\text { if } \mathrm{y}=0 : \quad \mathrm{p}(\mathrm{y} | \mathrm{x})=1-\hat{\mathrm{y}}}\end{array}<br>$$<br>合并公式：<br>$$<br>\mathrm{p}(\mathrm{y} | \mathrm{x})=\hat{y}^{\mathrm{y}}(1-\hat{y})^{(1-\mathrm{y})}<br>$$<br>对该公式取log似然，就得到了我们的损失函数。</p>
+<p>$J(w)=y \log S_{c} w^{\top} x_{+} b )+(1-y) \log \left[1-S\left(w^{\top} x+b\right)\right]$</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/13/机器学习-决策树/" rel="next" title="机器学习-决策树">
+                <i class="fa fa-chevron-left"></i> 机器学习-决策树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -340,6 +412,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -360,8 +436,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -421,6 +506,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Logistic回归要解决的问题"><span class="nav-number">1.</span> <span class="nav-text">Logistic回归要解决的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sigmoid函数"><span class="nav-number">2.</span> <span class="nav-text">sigmoid函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#损失函数"><span class="nav-number">3.</span> <span class="nav-text">损失函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -588,6 +689,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
