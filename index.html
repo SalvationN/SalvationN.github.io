@@ -341,16 +341,17 @@
 
       
         
-          
-            <h1 id="Logistic回归要解决的问题"><a href="#Logistic回归要解决的问题" class="headerlink" title="Logistic回归要解决的问题"></a>Logistic回归要解决的问题</h1><p>虽然名称是Logistic回归，但这个算法实际上要解决的问题是分类问题（主要是二分类）。当然，它与线性回归也有相似之处：他们的输入都是权重与自变量的线性组合即$W^TX+b$。Logostic回归的独特性在于，它采用了sigmoid函数将输入映射到0-1的区间内。然后以类似概率的方式进行0，1分类。</p>
-<h1 id="sigmoid函数"><a href="#sigmoid函数" class="headerlink" title="sigmoid函数"></a>sigmoid函数</h1><p>sigmoid的图像如下图：<br><img src="/2019/05/19/机器学习-Logistic回归/1.png"><br>它的特点是：自变量取值范围是正无穷到负无穷，而因变量的取值正好是0-1。同时，当取x取零点的一个足够小的取心邻域时，会发现此时sigmoid函数十分接近0-1函数。正可能也是为什么sigmoid函数可以用作logistic回归的转换函数的原因之一。<br>由于Logistic回归要使用梯度上升（下降）来得到最佳的参数（原因在后面），因此将会用到sigmoid的导数。求导的过程如下：<br>$$<br>\begin{aligned} g^{\prime}(z) &amp;=\frac{d}{d z} \frac{1}{1+e^{-z}}<br>\\ &amp;=\frac{1}{\left(1+e^{-z}\right)^{2}}\left(e^{-z}\right)<br>\\ &amp;=\frac{1}{\left(1+e^{-z}\right)^{2}} \cdot\left(1-\frac{1}{\left(1+e^{-z}\right)}\right) \\ &amp;=g(z)(1-g(z)) \end{aligned}<br>$$</p>
-<h1 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h1><p>下面是logistic回归的损失函数：<br>$$<br>\mathrm{L}(\hat{\mathrm{y}}, \mathrm{y})=-\mathrm{y} \log (\hat{\mathrm{y}})-(1-\mathrm{y}) \log (1-\hat{\mathrm{y}})<br>$$<br>为什么损失函数是这样的呢？<br>我们假定输入样本x，用y^表示训练样本x条件下预测y=1的概率，对应的，用1-y^表示训练样本x条件下预测y=0的概率，也就是说：<br>$$<br>\begin{array}{l}{\text { if } \mathrm{y}=1 : \mathrm{p}(\mathrm{y} | \mathrm{x})=\hat{\mathrm{y}}} \\ {\text { if } \mathrm{y}=0 : \quad \mathrm{p}(\mathrm{y} | \mathrm{x})=1-\hat{\mathrm{y}}}\end{array}<br>$$<br>合并公式：<br>$$<br>\mathrm{p}(\mathrm{y} | \mathrm{x})=\hat{y}^{\mathrm{y}}(1-\hat{y})^{(1-\mathrm{y})}<br>$$<br>对该公式取log似然，就得到了我们的损失函数。</p>
-<p>$J(w)=y \log S_{c} w^{\top} x_{+} b )+(1-y) \log \left[1-S\left(w^{\top} x+b\right)\right]$</p>
-
-          
+          <h1 id="Logistic回归要解决的问题"><a href="#Logistic回归要解决的问题" class="headerlink" title="Logistic回归要解决的问题"></a>Logistic回归要解决的问题</h1><p>虽然名称是Logistic回归，但这个算法实际上要解决的问题是分类问题（主要是二分类）。当然，它与线性回归也有相似之处：他们的输入都是权重与自变量的线性组合即$W^TX+b$。Logostic回归的独特性在于，它采用了sigmoid函数将输入映射到0-1的区间内。然后以类似概率的方式进行0，1分类。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/05/19/机器学习-Logistic回归/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
-    </div>
+    </p></div>
     
     
     
