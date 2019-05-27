@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://salvationn.github.io/2019/05/19/机器学习-Logistic回归/2.png">
 <meta property="og:image" content="http://salvationn.github.io/2019/05/19/机器学习-Logistic回归/3.png">
 <meta property="og:image" content="http://salvationn.github.io/2019/05/19/机器学习-Logistic回归/4.png">
-<meta property="og:updated_time" content="2019-05-22T12:11:43.541Z">
+<meta property="og:updated_time" content="2019-05-27T11:10:04.160Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习-Logistic回归">
 <meta name="twitter:description" content="Logistic回归要解决的问题虽然名称是Logistic回归，但这个算法实际上要解决的问题是分类问题（主要是二分类）。当然，它与线性回归也有相似之处：他们的输入都是权重与自变量的线性组合即$W^TX+b$。Logostic回归的独特性在于，它采用了sigmoid函数将输入映射到0-1的区间内。然后以类似概率的方式进行0，1分类。">
@@ -363,6 +363,7 @@
 <h1 id="随机梯度上升"><a href="#随机梯度上升" class="headerlink" title="随机梯度上升"></a>随机梯度上升</h1><p>抛开梯度爆炸以及局部最优值等问题，梯度上升的确能给优化带来一个理想的结果。但梯度上升有一个很大的问题是：它的效率有些低。从上述代码可以看出，我们每次在进行更新时都需要遍历每条数据，当数据集足够大时，这个算法的性能就堪忧了。<br>于是随之应运而生的就是随机梯度上升算法。这个算法原理与梯度上升相同，只是在每一次更新权重时时只采用一部分数据进行处理。<br>下面的随机梯度下降每次更新时只采用一个数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 随机梯度上升</span><br><span class="line">def stocGradAscent(dataIn,labels,alpha):</span><br><span class="line">    m,n = shape(dataIn)</span><br><span class="line">    weights = ones(n)  #根据数据的特征维度n来构建n维的权重</span><br><span class="line">    for i in range(m):</span><br><span class="line">        h = sigmoid(dataIn[i]*weights)</span><br><span class="line">        error = labels[i] - h</span><br><span class="line">        weights = weights + alpha * dataIn[i] * error  #这里要注意矩阵乘法的方向</span><br><span class="line">    return weights</span><br><span class="line"></span><br><span class="line">stocWeights = stocGradAscent(array(data),labels,0.01)</span><br><span class="line">plotBestFit(stocWeights)</span><br></pre></td></tr></table></figure></p>
 <img src="/2019/05/19/机器学习-Logistic回归/4.png">
 <p>可以看到，结果并不是很好。但这里的原因是，上述梯度上升算法我们所用的迭代次数是500次，而这里我们只用了100次，自然结果更差一些。</p>
+<h1 id="改进的随机梯度上升"><a href="#改进的随机梯度上升" class="headerlink" title="改进的随机梯度上升"></a>改进的随机梯度上升</h1><p>这里实际上《机器学习实战》中有给出优化的方法，但鉴于梯度上升（下降）的优化是一个比较大的内容，我打算在后续博客中归纳总结。</p>
 
       
     </div>
@@ -527,7 +528,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Logistic回归要解决的问题"><span class="nav-number">1.</span> <span class="nav-text">Logistic回归要解决的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sigmoid函数"><span class="nav-number">2.</span> <span class="nav-text">sigmoid函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#损失函数"><span class="nav-number">3.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#梯度上升"><span class="nav-number">4.</span> <span class="nav-text">梯度上升</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度上升实现"><span class="nav-number">4.1.</span> <span class="nav-text">梯度上升实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果可视化"><span class="nav-number">4.2.</span> <span class="nav-text">结果可视化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#随机梯度上升"><span class="nav-number">5.</span> <span class="nav-text">随机梯度上升</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Logistic回归要解决的问题"><span class="nav-number">1.</span> <span class="nav-text">Logistic回归要解决的问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sigmoid函数"><span class="nav-number">2.</span> <span class="nav-text">sigmoid函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#损失函数"><span class="nav-number">3.</span> <span class="nav-text">损失函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#梯度上升"><span class="nav-number">4.</span> <span class="nav-text">梯度上升</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度上升实现"><span class="nav-number">4.1.</span> <span class="nav-text">梯度上升实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结果可视化"><span class="nav-number">4.2.</span> <span class="nav-text">结果可视化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#随机梯度上升"><span class="nav-number">5.</span> <span class="nav-text">随机梯度上升</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#改进的随机梯度上升"><span class="nav-number">6.</span> <span class="nav-text">改进的随机梯度上升</span></a></li></ol></div>
             
 
           </div>
