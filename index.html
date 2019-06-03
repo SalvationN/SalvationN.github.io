@@ -7,7 +7,7 @@
 
 <html class="theme-next gemini use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="theme-color" content="#222">
@@ -121,7 +121,7 @@
 
 
 
-  <title>N's Home</title>
+  <title>N's Home</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -140,7 +140,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
   page-home">
     <div class="headband"></div>
 
@@ -235,6 +235,172 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/05/29/机器学习-SVM/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jackkwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="N's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/05/29/机器学习-SVM/" itemprop="url">机器学习-SVM</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-29T08:32:07+08:00">
+                2019-05-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h1><p>线性可分：对于相对完美的数据集，如果能用一条“直线”来分割数据集，则称该数据线性可分。<br>分割超平面： 对于上述的n维数据，将那条“直线”称作分割超平面。注意，这里的直线通常并不指二维直线，分割超平面的维数应该是n-1维。<br>支持向量： 由于对于同一个数据集，超平面可以有很多，所以需要找到一个较好的分割面。这里对较好的定义是：对于离分割面最近的点，它们离超平面应该尽可能远—如果离得最近的点都离超平面足够远了，那么这个超平面就足够对数据集进行分割（分类）了。所以，<strong>支持向量就是指离分割面最近的那些点</strong>。</p>
+<h1 id="寻找最大间隔"><a href="#寻找最大间隔" class="headerlink" title="寻找最大间隔"></a>寻找最大间隔</h1><p>这里李航机器学习书中有两个概念：函数间隔和几何间隔。<br>函数间隔的定义是：</p>
+<script type="math/tex; mode=display">
+\hat{\gamma}=y\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b\right)=y f(\boldsymbol{x})</script><p>而几何间隔就是在函数间隔上除一个w的l2范数。<br>这里不再解释函数间隔和几何间隔的推导过程，因为实际上由点到直线的公式能很快的推导出几何间隔的表达式。由于几何间隔对参数w做了规范化处理，所以它更适合用来变大间隔大小。<br>首先回顾以下高中知识（我还真给忘了。。），点到直线距离公式：</p>
+<script type="math/tex; mode=display">
+d=\left|\frac{A x_{0}+B y_{0}+C z_{0}+D}{\sqrt{A^{2}+B^{2}+C^{2}}}\right|</script><p>其次要明确我们的超平面的表达式：</p>
+<script type="math/tex; mode=display">
+wx+b=0</script><p>在超平面一侧y为负，在另一侧y为正。用图片表示如下：<br><img src="/2019/05/29/机器学习-SVM/1.png"><br>因此，数据点到分割面的距离是：</p>
+<script type="math/tex; mode=display">
+d=\left|\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b\right|/||w||</script><p>为了方便优化，几何间隔在此基础上乘上了一个分类标签，由于y和wx+b是同号的（只要是正确分类），因此避免了绝对值问题。因此，求解最大间隔问题就变成了如下表达式：<br><img src="/2019/05/29/机器学习-SVM/2.png"><br>进一步，加上约束条件，就有：<br><img src="/2019/05/29/机器学习-SVM/3.png"><br>在这之后，《机器学习实战》中给出wx+b&gt;=1即间隔为1的限定，但没有给出具体证明，也不太好理解，参考了网上的资料( <a href="https://blog.csdn.net/waho001/article/details/78786796，https://www.zhihu.com/question/64568136/answer/257874428" target="_blank" rel="noopener">https://blog.csdn.net/waho001/article/details/78786796，https://www.zhihu.com/question/64568136/answer/257874428</a> )，现在大致理解了一些。<br>对于上述距离公式$\hat{\gamma}=y^{(i)}\left(w^{T} x^{(i)}+b\right)$，我们对两边同时除以$\hat{\gamma}$，就有</p>
+<script type="math/tex; mode=display">y^{(i)}\left(\left(\frac{w}{\hat{\gamma}}\right)^{T} x^{i}+\frac{b}{\hat{\gamma}}\right)=1</script><p>令$W=\left(\frac{w}{\hat{\gamma}}\right), B=\frac{b}{\hat{\gamma}}$，则有$y^{(i)}\left(W^{T} x^{i}+B\right)=1$，有趣的是：在除以$\hat{\gamma}$后，实际上两个参数不同的表达式实际上指的是同一个平面。进一步理解，对于w*x+b=0，对w和b进行等比缩放以后，得到的超平面是不变的。<br>同理，对于上面的约束条件，我们同时除以$\hat{\gamma}$，就得到了</p>
+<script type="math/tex; mode=display">
+y^{(i)}\left(\omega^{T} x^{(i)}+b\right) \geq 1, i=1, \cdots, n</script><p>这是得到的新的约束条件。<br>将上述式子简化得到所要求解的式子：</p>
+<script type="math/tex; mode=display">
+\max _{v_{0}, w} \frac{2}{\|\mathbf{w}\|}, \quad \text { subject to } \quad y_{i}\left(w_{0}+\mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}\right) \geq 1, \quad \forall i</script><p>为了方便优化，将求最大值转化为求最小值：</p>
+<script type="math/tex; mode=display">
+\min _{w_{0}, w} \frac{1}{2}\|\mathbf{w}\|^{2}, \quad \text { subject to } \quad y_{i}\left(w_{0}+\mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}\right) \geq 1, \quad \forall i</script><h1 id="对偶表示"><a href="#对偶表示" class="headerlink" title="对偶表示"></a>对偶表示</h1><p>采用拉格朗日乘子法，定义拉格朗日函数：</p>
+<script type="math/tex; mode=display">
+L\left(\boldsymbol{a}, w_{0}, \mathbf{w}\right)=\frac{1}{2} \mathbf{w}^{T} \mathbf{w}-\sum_{i=1}^{N} \alpha_{i}\left(y_{i}\left(w_{0}+\mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}\right)-1\right), \quad \alpha_{i} \geq 0</script><p>于是，问题转化为求使该函数最小的w0和w，分别对w0和w求偏导：</p>
+<script type="math/tex; mode=display">
+\begin{array}{c}{\frac{\partial L}{\partial \mathbf{w}}=0 \Rightarrow \mathbf{w}=\sum_{i=1}^{N} \alpha_{i} y_{i} \mathbf{x}_{i}} \\ {\frac{\partial L}{\partial w_{0}}=0 \Rightarrow \sum_{i=1}^{N} \alpha_{i} y_{i}=0}\end{array}</script><p>将上述两个等式导入：</p>
+<script type="math/tex; mode=display">
+\begin{aligned} L\left(\boldsymbol{a}, w_{0}, \mathbf{w}\right) &=\frac{1}{2} \mathbf{w}^{T} \mathbf{w}-\sum_{i=1}^{N} \alpha_{i}\left(y_{i}\left(w_{0}+\mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}\right)-1\right)_{0} \\ &=\frac{1}{2} \mathbf{w}^{T} \mathbf{w}-\sum_{i=1}^{N} \alpha_{i} y_{i} \mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}-\sum_{i=1}^{N} \alpha_{i} y_{i} w_{0}+\sum_{i=1}^{N} \alpha_{i} \end{aligned}</script><script type="math/tex; mode=display">
+\begin{array}{l}{\mathbf{w}^{\prime} \mathbf{w}=\left(\sum_{i=1}^{N} \alpha_{i} y_{i} \mathbf{x}_{i}\right)^{T}\left(\sum_{j=1}^{N} \alpha_{j} y_{j} \mathbf{x}_{j}\right)=\sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} y_{i} y_{j} \mathbf{x}_{i}^{T} \mathbf{x}_{j}} \\ {\sum_{i=1}^{N} \alpha_{i} y_{i} \mathbf{w}^{T} \mathbf{x}_{i}=\sum_{i=1}^{N} \alpha_{i} y_{i}\left(\sum_{j=1}^{N} \alpha_{j} y_{j} \mathbf{x}_{j}\right)^{T} \mathbf{x}_{i}=\sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} y_{i} y_{j} \mathbf{x}_{i}^{T} \mathbf{x}_{j}}\end{array}</script><p>将等式带入整理就得到原问题的对偶问题：</p>
+<script type="math/tex; mode=display">
+Q(\boldsymbol{a})=\sum_{i=1}^{N} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} y_{i} y_{j} \mathbf{x}_{i}^{T} \mathbf{x}_{j}</script>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -1551,159 +1717,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2018/12/18/一次简单的前端练习/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jackkwin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="N's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/18/一次简单的前端练习/" itemprop="url">一次简单的前端练习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T16:56:17+08:00">
-                2018-12-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>　　万万没想到第一篇博客会是前端，最近突然对它燃起了兴趣，虽然估计很快就会结束，但能坚持两周我就很满意了。<br>　　自己盘算了一下，后面想学的东西很多，又碍于考研复习，不知道有多少时间能写博客，且行且珍惜吧。</p>
-<h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><pre><code>- 熟悉css各种属性以及参数
-- 学会前端布局
-- 学会处理一系列问题，使得页面更加和谐
-</code></pre>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/12/18/一次简单的前端练习/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1747,7 +1767,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2035,7 +2055,24 @@
         }
       });
     </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
   
 
 

@@ -79,24 +79,21 @@
 
 
 
-<meta name="description" content="建立一个新的project具体不谈如何安装Android Studio了，除了取消gradle安装外，基本是傻瓜式操作。直接开始新建project。首先第一个界面，选择phone and tablet，选basic app。">
+<meta name="description" content="几个概念线性可分：对于相对完美的数据集，如果能用一条“直线”来分割数据集，则称该数据线性可分。分割超平面： 对于上述的n维数据，将那条“直线”称作分割超平面。注意，这里的直线通常并不指二维直线，分割超平面的维数应该是n-1维。支持向量： 由于对于同一个数据集，超平面可以有很多，所以需要找到一个较好的分割面。这里对较好的定义是：对于离分割面最近的点，它们离超平面应该尽可能远—如果离得最近的点都离超平">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android -- 第一个app">
-<meta property="og:url" content="http://salvationn.github.io/2019/03/24/Android-第一个app/index.html">
+<meta property="og:title" content="机器学习-SVM">
+<meta property="og:url" content="http://salvationn.github.io/2019/05/29/机器学习-SVM/index.html">
 <meta property="og:site_name" content="N&#39;s Home">
-<meta property="og:description" content="建立一个新的project具体不谈如何安装Android Studio了，除了取消gradle安装外，基本是傻瓜式操作。直接开始新建project。首先第一个界面，选择phone and tablet，选basic app。">
+<meta property="og:description" content="几个概念线性可分：对于相对完美的数据集，如果能用一条“直线”来分割数据集，则称该数据线性可分。分割超平面： 对于上述的n维数据，将那条“直线”称作分割超平面。注意，这里的直线通常并不指二维直线，分割超平面的维数应该是n-1维。支持向量： 由于对于同一个数据集，超平面可以有很多，所以需要找到一个较好的分割面。这里对较好的定义是：对于离分割面最近的点，它们离超平面应该尽可能远—如果离得最近的点都离超平">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://salvationn.github.io/2019/03/24/Android-第一个app/1.png">
-<meta property="og:image" content="http://salvationn.github.io/2019/03/24/Android-第一个app/2.png">
-<meta property="og:image" content="http://salvationn.github.io/2019/03/24/Android-第一个app/3.png">
-<meta property="og:image" content="http://salvationn.github.io/2019/03/24/Android-第一个app/4.png">
-<meta property="og:image" content="http://salvationn.github.io/2019/03/24/Android-第一个app/5.png">
-<meta property="og:image" content="http://salvationn.github.io/2019/03/24/Android-第一个app/6.png">
-<meta property="og:updated_time" content="2019-03-25T12:03:18.784Z">
+<meta property="og:image" content="http://salvationn.github.io/2019/05/29/机器学习-SVM/1.png">
+<meta property="og:image" content="http://salvationn.github.io/2019/05/29/机器学习-SVM/2.png">
+<meta property="og:image" content="http://salvationn.github.io/2019/05/29/机器学习-SVM/3.png">
+<meta property="og:updated_time" content="2019-06-03T12:50:16.493Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android -- 第一个app">
-<meta name="twitter:description" content="建立一个新的project具体不谈如何安装Android Studio了，除了取消gradle安装外，基本是傻瓜式操作。直接开始新建project。首先第一个界面，选择phone and tablet，选basic app。">
-<meta name="twitter:image" content="http://salvationn.github.io/2019/03/24/Android-第一个app/1.png">
+<meta name="twitter:title" content="机器学习-SVM">
+<meta name="twitter:description" content="几个概念线性可分：对于相对完美的数据集，如果能用一条“直线”来分割数据集，则称该数据线性可分。分割超平面： 对于上述的n维数据，将那条“直线”称作分割超平面。注意，这里的直线通常并不指二维直线，分割超平面的维数应该是n-1维。支持向量： 由于对于同一个数据集，超平面可以有很多，所以需要找到一个较好的分割面。这里对较好的定义是：对于离分割面最近的点，它们离超平面应该尽可能远—如果离得最近的点都离超平">
+<meta name="twitter:image" content="http://salvationn.github.io/2019/05/29/机器学习-SVM/1.png">
 
 
 
@@ -126,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://salvationn.github.io/2019/03/24/Android-第一个app/">
+  <link rel="canonical" href="http://salvationn.github.io/2019/05/29/机器学习-SVM/">
 
 
 
 
 
-  <title>Android -- 第一个app | N's Home</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>机器学习-SVM | N's Home</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -259,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/03/24/Android-第一个app/">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/05/29/机器学习-SVM/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jackkwin">
@@ -276,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android -- 第一个app</h1>
+          <h1 class="post-title" itemprop="name headline">机器学习-SVM</h1>
         
 
         <div class="post-meta">
@@ -288,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-24T21:03:32+08:00">
-                2019-03-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-29T08:32:07+08:00">
+                2019-05-29
               </time>
             
 
@@ -311,8 +308,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/Android/" itemprop="url" rel="index">
-                    <span itemprop="name">Android</span>
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
                   </a>
                 </span>
 
@@ -353,18 +350,32 @@
       
 
       
-        <h2 id="建立一个新的project"><a href="#建立一个新的project" class="headerlink" title="建立一个新的project"></a>建立一个新的project</h2><p>具体不谈如何安装Android Studio了，除了取消gradle安装外，基本是傻瓜式操作。<br>直接开始新建project。首先第一个界面，选择phone and tablet，选basic app。<br><a id="more"></a><br><img src="/2019/03/24/Android-第一个app/1.png"><br>接下来是一些基本配置，包名啊什么的。底下有一个最小API级别，为了更好的兼容最好不要选太高的。然后点击finish。<br><img src="/2019/03/24/Android-第一个app/2.png"></p>
-<h2 id="gradle更新"><a href="#gradle更新" class="headerlink" title="gradle更新"></a>gradle更新</h2><p>这一点似乎是很多新手会出现的问题，因为国外的镜像源实在太慢了。但我在建工程的过程中，有时候是能很快加载的（可能是因为挂了VPN）。但第一次建立时同样会出现更新半天没成功的问题。</p>
-<h3 id="手动更新gradle"><a href="#手动更新gradle" class="headerlink" title="手动更新gradle"></a>手动更新gradle</h3><p>第一次建工程采用的是手动更新gradle的办法。找到工程目录下gradle/wrapper/gradle-wrapper.properties，编辑，看到如下信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#Sun Mar 24 20:41:04 CST 2019</span><br><span class="line">distributionBase=GRADLE_USER_HOME</span><br><span class="line">distributionPath=wrapper/dists</span><br><span class="line">zipStoreBase=GRADLE_USER_HOME</span><br><span class="line">zipStorePath=wrapper/dists</span><br><span class="line">distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.1-all.zip</span><br></pre></td></tr></table></figure></p>
-<p>要改的地方就是distributionUrl这个参数，改成自己从网上下载的gradle压缩包路径。<br>注意：压缩包版本最好和原来的版本匹配，比如我这里就是gradle-4.10.1-all.zip。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#Fri Mar 22 16:37:51 CST 2019</span><br><span class="line">distributionBase=GRADLE_USER_HOME</span><br><span class="line">distributionPath=wrapper/dists</span><br><span class="line">zipStoreBase=GRADLE_USER_HOME</span><br><span class="line">zipStorePath=wrapper/dists</span><br><span class="line">distributionUrl=file:///C:/Users/49457/.gradle/wrapper/dists/gradle-4.10.1-all/455itskqi2qtf0v2sja68alqd/gradle-4.10.1-all.zip</span><br></pre></td></tr></table></figure></p>
-<p>保存，退出。重启Adroid Studio，gradle会自动更新，速度很快的。</p>
-<h3 id="更新镜像源"><a href="#更新镜像源" class="headerlink" title="更新镜像源"></a>更新镜像源</h3><p>但是这样每次都要修改太麻烦了，每次都得找以前的文件。于是我就想找找有啥一劳永逸的办法。<br>找到一篇博客大致意思是说可以修改镜像源？真好最近再用linux，感觉还是很熟悉的。<br>于是照着操作。找到Android Studio的安装目录下的 build.gradle.ftl 文件：<br>C:\Java\Anroid studio\plugins\android\lib\templates\gradle-projects\NewAndroidProject\root<br>使用管理员身份修改文件中的仓库地址，把aliyun的仓库放在第1位，记得要修改2处。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">repositories &#123;</span><br><span class="line">        maven&#123; url &apos;http://maven.aliyun.com/nexus/content/groups/public/&apos;&#125;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        maven&#123; url &apos;http://maven.aliyun.com/nexus/content/groups/public/&apos;&#125;</span><br><span class="line">        google()</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>保存退出。再新建一个工程。工程加载的时候点开processing，可以看到如下提示：<br><img src="/2019/03/24/Android-第一个app/3.png"><br>可以看到，系统现在已经从依赖aliyun进行下载了。并且速度很快，大概就是我打上一行字的时间就加载好了。</p>
-<h2 id="重要配置文件浏览"><a href="#重要配置文件浏览" class="headerlink" title="重要配置文件浏览"></a>重要配置文件浏览</h2><pre><code>app/src/main/res/layout/activity_my.xml
-</code></pre><p>这是刚才用Android Studio创建项目时新建的Activity对应的xml布局文件，按照创建新项目的流程，Android Studio会同时展示这个文件的文本视图和图形化预览视图，该文件包含一些默认设置和一个显示内容为“Hello world!”的TextView元素。<br><img src="/2019/03/24/Android-第一个app/4.png"><br>    app/src/main/java/com.mycompany.myfirstapp/mainActivity.java<br>用AndroidStudio创建新项目完成后，可在AndroidStudio看到该文件对应的选项卡，选中该选项卡，可以看到刚创建的Activity类的定义。编译并运行该项目后，Activity启动并加载布局文件activity_my.xml，显示一条文本：”Hello world!”<br><img src="/2019/03/24/Android-第一个app/5.png"><br>    app/src/main/AndroidManifest.xml<br>manifest文件描述了项目的基本特征并列出了组成应用的各个组件，接下来的学习会更深入了解这个文件并添加更多组件到该文件中。<br>    app/build.gradle<br>这个文件和AndroidManifest.xml一样，今后会很常用，将来用到了再记录。</p>
-<h2 id="执行app"><a href="#执行app" class="headerlink" title="执行app"></a>执行app</h2><p>首先确保gradle已经加载。只要工具栏处有app运行标志即可。<br><img src="/2019/03/24/Android-第一个app/6.png"><br>然后还需要ADV Magager，也就是适配设备。同样在工具栏，一个长得像手机的图标上。或者也可以在运行app时新建。<br>如果是在windows端开发，在运行app前，需要连接安卓设备，并启用开发者模式。一般只要找到手机版本号，连着点几下（官方说是7下），就会提示已处于开发者模式。<br>接下来就可以运行app了。<br>具体界面就是hello world！没带数据线，不截图了。<br>到此，第一个运行的安卓程序成功了。<br>PS：写博客真累。。慢慢更吧。。</p>
-
+        <h1 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h1><p>线性可分：对于相对完美的数据集，如果能用一条“直线”来分割数据集，则称该数据线性可分。<br>分割超平面： 对于上述的n维数据，将那条“直线”称作分割超平面。注意，这里的直线通常并不指二维直线，分割超平面的维数应该是n-1维。<br>支持向量： 由于对于同一个数据集，超平面可以有很多，所以需要找到一个较好的分割面。这里对较好的定义是：对于离分割面最近的点，它们离超平面应该尽可能远—如果离得最近的点都离超平面足够远了，那么这个超平面就足够对数据集进行分割（分类）了。所以，<strong>支持向量就是指离分割面最近的那些点</strong>。</p>
+<h1 id="寻找最大间隔"><a href="#寻找最大间隔" class="headerlink" title="寻找最大间隔"></a>寻找最大间隔</h1><p>这里李航机器学习书中有两个概念：函数间隔和几何间隔。<br>函数间隔的定义是：</p>
+<script type="math/tex; mode=display">
+\hat{\gamma}=y\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b\right)=y f(\boldsymbol{x})</script><p>而几何间隔就是在函数间隔上除一个w的l2范数。<br>这里不再解释函数间隔和几何间隔的推导过程，因为实际上由点到直线的公式能很快的推导出几何间隔的表达式。由于几何间隔对参数w做了规范化处理，所以它更适合用来变大间隔大小。<br>首先回顾以下高中知识（我还真给忘了。。），点到直线距离公式：</p>
+<script type="math/tex; mode=display">
+d=\left|\frac{A x_{0}+B y_{0}+C z_{0}+D}{\sqrt{A^{2}+B^{2}+C^{2}}}\right|</script><p>其次要明确我们的超平面的表达式：</p>
+<script type="math/tex; mode=display">
+wx+b=0</script><p>在超平面一侧y为负，在另一侧y为正。用图片表示如下：<br><img src="/2019/05/29/机器学习-SVM/1.png"><br>因此，数据点到分割面的距离是：</p>
+<script type="math/tex; mode=display">
+d=\left|\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b\right|/||w||</script><p>为了方便优化，几何间隔在此基础上乘上了一个分类标签，由于y和wx+b是同号的（只要是正确分类），因此避免了绝对值问题。因此，求解最大间隔问题就变成了如下表达式：<br><img src="/2019/05/29/机器学习-SVM/2.png"><br>进一步，加上约束条件，就有：<br><img src="/2019/05/29/机器学习-SVM/3.png"><br>在这之后，《机器学习实战》中给出wx+b&gt;=1即间隔为1的限定，但没有给出具体证明，也不太好理解，参考了网上的资料( <a href="https://blog.csdn.net/waho001/article/details/78786796，https://www.zhihu.com/question/64568136/answer/257874428" target="_blank" rel="noopener">https://blog.csdn.net/waho001/article/details/78786796，https://www.zhihu.com/question/64568136/answer/257874428</a> )，现在大致理解了一些。<br>对于上述距离公式$\hat{\gamma}=y^{(i)}\left(w^{T} x^{(i)}+b\right)$，我们对两边同时除以$\hat{\gamma}$，就有</p>
+<script type="math/tex; mode=display">y^{(i)}\left(\left(\frac{w}{\hat{\gamma}}\right)^{T} x^{i}+\frac{b}{\hat{\gamma}}\right)=1</script><p>令$W=\left(\frac{w}{\hat{\gamma}}\right), B=\frac{b}{\hat{\gamma}}$，则有$y^{(i)}\left(W^{T} x^{i}+B\right)=1$，有趣的是：在除以$\hat{\gamma}$后，实际上两个参数不同的表达式实际上指的是同一个平面。进一步理解，对于w*x+b=0，对w和b进行等比缩放以后，得到的超平面是不变的。<br>同理，对于上面的约束条件，我们同时除以$\hat{\gamma}$，就得到了</p>
+<script type="math/tex; mode=display">
+y^{(i)}\left(\omega^{T} x^{(i)}+b\right) \geq 1, i=1, \cdots, n</script><p>这是得到的新的约束条件。<br>将上述式子简化得到所要求解的式子：</p>
+<script type="math/tex; mode=display">
+\max _{v_{0}, w} \frac{2}{\|\mathbf{w}\|}, \quad \text { subject to } \quad y_{i}\left(w_{0}+\mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}\right) \geq 1, \quad \forall i</script><p>为了方便优化，将求最大值转化为求最小值：</p>
+<script type="math/tex; mode=display">
+\min _{w_{0}, w} \frac{1}{2}\|\mathbf{w}\|^{2}, \quad \text { subject to } \quad y_{i}\left(w_{0}+\mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}\right) \geq 1, \quad \forall i</script><h1 id="对偶表示"><a href="#对偶表示" class="headerlink" title="对偶表示"></a>对偶表示</h1><p>采用拉格朗日乘子法，定义拉格朗日函数：</p>
+<script type="math/tex; mode=display">
+L\left(\boldsymbol{a}, w_{0}, \mathbf{w}\right)=\frac{1}{2} \mathbf{w}^{T} \mathbf{w}-\sum_{i=1}^{N} \alpha_{i}\left(y_{i}\left(w_{0}+\mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}\right)-1\right), \quad \alpha_{i} \geq 0</script><p>于是，问题转化为求使该函数最小的w0和w，分别对w0和w求偏导：</p>
+<script type="math/tex; mode=display">
+\begin{array}{c}{\frac{\partial L}{\partial \mathbf{w}}=0 \Rightarrow \mathbf{w}=\sum_{i=1}^{N} \alpha_{i} y_{i} \mathbf{x}_{i}} \\ {\frac{\partial L}{\partial w_{0}}=0 \Rightarrow \sum_{i=1}^{N} \alpha_{i} y_{i}=0}\end{array}</script><p>将上述两个等式导入：</p>
+<script type="math/tex; mode=display">
+\begin{aligned} L\left(\boldsymbol{a}, w_{0}, \mathbf{w}\right) &=\frac{1}{2} \mathbf{w}^{T} \mathbf{w}-\sum_{i=1}^{N} \alpha_{i}\left(y_{i}\left(w_{0}+\mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}\right)-1\right)_{0} \\ &=\frac{1}{2} \mathbf{w}^{T} \mathbf{w}-\sum_{i=1}^{N} \alpha_{i} y_{i} \mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}-\sum_{i=1}^{N} \alpha_{i} y_{i} w_{0}+\sum_{i=1}^{N} \alpha_{i} \end{aligned}</script><script type="math/tex; mode=display">
+\begin{array}{l}{\mathbf{w}^{\prime} \mathbf{w}=\left(\sum_{i=1}^{N} \alpha_{i} y_{i} \mathbf{x}_{i}\right)^{T}\left(\sum_{j=1}^{N} \alpha_{j} y_{j} \mathbf{x}_{j}\right)=\sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} y_{i} y_{j} \mathbf{x}_{i}^{T} \mathbf{x}_{j}} \\ {\sum_{i=1}^{N} \alpha_{i} y_{i} \mathbf{w}^{T} \mathbf{x}_{i}=\sum_{i=1}^{N} \alpha_{i} y_{i}\left(\sum_{j=1}^{N} \alpha_{j} y_{j} \mathbf{x}_{j}\right)^{T} \mathbf{x}_{i}=\sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} y_{i} y_{j} \mathbf{x}_{i}^{T} \mathbf{x}_{j}}\end{array}</script><p>将等式带入整理就得到原问题的对偶问题：</p>
+<script type="math/tex; mode=display">
+Q(\boldsymbol{a})=\sum_{i=1}^{N} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} y_{i} y_{j} \mathbf{x}_{i}^{T} \mathbf{x}_{j}</script>
       
     </div>
     
@@ -388,8 +399,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/18/一次简单的前端练习/" rel="next" title="一次简单的前端练习">
-                <i class="fa fa-chevron-left"></i> 一次简单的前端练习
+              <a href="/2019/05/19/机器学习-Logistic回归/" rel="next" title="机器学习-Logistic回归">
+                <i class="fa fa-chevron-left"></i> 机器学习-Logistic回归
               </a>
             
           </div>
@@ -397,10 +408,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/25/SpringMVC-几个配置文件/" rel="prev" title="SpringMVC--几个配置文件">
-                SpringMVC--几个配置文件 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -532,7 +539,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#建立一个新的project"><span class="nav-number">1.</span> <span class="nav-text">建立一个新的project</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gradle更新"><span class="nav-number">2.</span> <span class="nav-text">gradle更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#手动更新gradle"><span class="nav-number">2.1.</span> <span class="nav-text">手动更新gradle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新镜像源"><span class="nav-number">2.2.</span> <span class="nav-text">更新镜像源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重要配置文件浏览"><span class="nav-number">3.</span> <span class="nav-text">重要配置文件浏览</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行app"><span class="nav-number">4.</span> <span class="nav-text">执行app</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#几个概念"><span class="nav-number">1.</span> <span class="nav-text">几个概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寻找最大间隔"><span class="nav-number">2.</span> <span class="nav-text">寻找最大间隔</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对偶表示"><span class="nav-number">3.</span> <span class="nav-text">对偶表示</span></a></li></ol></div>
             
 
           </div>
