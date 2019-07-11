@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="决策树的原理较为简单，表示起来和数据结构中的图没有什么区别。 决策树的构造决策树的构造需要解决的第一个问题就是：如何选择划分的依据呢？即，如何选择划分数据分类的特征？《机器学习实战》中介绍了ID3算法–迭代二叉树3代。这个算法的核心思想是利用信息增益来度量属性的选择。">
+<meta name="description" content="决策树的原理较为简单，表示起来和数据结构中的图没有什么区别。 决策树的构造决策树的构造需要解决的第一个问题就是：如何选择划分的依据呢？即，如何选择划分数据分类的特征？《机器学习实战》中介绍了ID3算法—迭代二叉树3代。这个算法的核心思想是利用信息增益来度量属性的选择。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习-决策树">
 <meta property="og:url" content="http://salvationn.github.io/2019/05/13/机器学习-决策树/index.html">
 <meta property="og:site_name" content="N&#39;s Home">
-<meta property="og:description" content="决策树的原理较为简单，表示起来和数据结构中的图没有什么区别。 决策树的构造决策树的构造需要解决的第一个问题就是：如何选择划分的依据呢？即，如何选择划分数据分类的特征？《机器学习实战》中介绍了ID3算法–迭代二叉树3代。这个算法的核心思想是利用信息增益来度量属性的选择。">
+<meta property="og:description" content="决策树的原理较为简单，表示起来和数据结构中的图没有什么区别。 决策树的构造决策树的构造需要解决的第一个问题就是：如何选择划分的依据呢？即，如何选择划分数据分类的特征？《机器学习实战》中介绍了ID3算法—迭代二叉树3代。这个算法的核心思想是利用信息增益来度量属性的选择。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://salvationn.github.io/2019/05/13/机器学习-决策树/1.png">
 <meta property="og:image" content="http://salvationn.github.io/2019/05/13/机器学习-决策树/2.png">
@@ -94,7 +94,7 @@
 <meta property="og:updated_time" content="2019-05-14T12:11:34.374Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习-决策树">
-<meta name="twitter:description" content="决策树的原理较为简单，表示起来和数据结构中的图没有什么区别。 决策树的构造决策树的构造需要解决的第一个问题就是：如何选择划分的依据呢？即，如何选择划分数据分类的特征？《机器学习实战》中介绍了ID3算法–迭代二叉树3代。这个算法的核心思想是利用信息增益来度量属性的选择。">
+<meta name="twitter:description" content="决策树的原理较为简单，表示起来和数据结构中的图没有什么区别。 决策树的构造决策树的构造需要解决的第一个问题就是：如何选择划分的依据呢？即，如何选择划分数据分类的特征？《机器学习实战》中介绍了ID3算法—迭代二叉树3代。这个算法的核心思想是利用信息增益来度量属性的选择。">
 <meta name="twitter:image" content="http://salvationn.github.io/2019/05/13/机器学习-决策树/1.png">
 
 
@@ -353,7 +353,7 @@
 
       
         <p>决策树的原理较为简单，表示起来和数据结构中的图没有什么区别。</p>
-<h1 id="决策树的构造"><a href="#决策树的构造" class="headerlink" title="决策树的构造"></a>决策树的构造</h1><p>决策树的构造需要解决的第一个问题就是：如何选择划分的依据呢？即，如何选择划分数据分类的特征？<br>《机器学习实战》中介绍了ID3算法–迭代二叉树3代。这个算法的核心思想是利用<strong>信息增益</strong>来度量属性的选择。<br><a id="more"></a></p>
+<h1 id="决策树的构造"><a href="#决策树的构造" class="headerlink" title="决策树的构造"></a>决策树的构造</h1><p>决策树的构造需要解决的第一个问题就是：如何选择划分的依据呢？即，如何选择划分数据分类的特征？<br>《机器学习实战》中介绍了ID3算法—迭代二叉树3代。这个算法的核心思想是利用<strong>信息增益</strong>来度量属性的选择。<br><a id="more"></a></p>
 <h2 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h2><p>首先需要知道两个定义。如果待分类的事务可能划分在多个类中（即该事务不属于同一个分类，这是决策树停止划分的条件），则：</p>
 <ol>
 <li>xi的信息定义为<strong>L(xi)=-log2p(xi)</strong> 。其中，p(xi)为选择该分类的概率。</li>
@@ -369,7 +369,7 @@
 <img src="/2019/05/13/机器学习-决策树/2.png">
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"># 选择最佳的属性以划分数据集</span><br><span class="line">def chooseBestFeatureToSplit(dataset):</span><br><span class="line">    numFeatures = len(dataset[0]) - 1  #计算特征维度</span><br><span class="line">    baseEntropy = calShannonEnt(dataset)</span><br><span class="line">    bestInfoGain = 0.0</span><br><span class="line">    bestFeatrue = -1</span><br><span class="line">    for i in range(numFeatures):</span><br><span class="line">        featureList = [example[i] for example in dataset]  #对于每一个特征（i），取出其所有可能的取值</span><br><span class="line">        featureSet = set(featureList)  #唯一化特征的取值</span><br><span class="line">        newEntropy = 0.0</span><br><span class="line">        for value in featureSet:</span><br><span class="line">            splitdataset = splitDataSet(dataset,i,value)  #对于第i个特征，将其按照所有的取值value划分数据集</span><br><span class="line">            prob = len(splitdataset)/float(len(dataset))  #计算取value时所占总数据集比例</span><br><span class="line">            newEntropy += calShannonEnt(splitdataset) * prob </span><br><span class="line">            #计算新的香农熵，划分后的信息熵需要乘上每种划分的概率</span><br><span class="line">            infoGain = baseEntropy - newEntropy  #计算信息受益</span><br><span class="line">        if infoGain &gt; bestInfoGain:</span><br><span class="line">            bestInfoGain = infoGain</span><br><span class="line">            bestFeature = i  #找到获得最高信息受益的特征</span><br><span class="line">    return bestFeature</span><br><span class="line"></span><br><span class="line">chooseBestFeatureToSplit(data)</span><br></pre></td></tr></table></figure>
 <img src="/2019/05/13/机器学习-决策树/3.png">
-<ol start="3">
+<ol>
 <li>递归创建树<br>下面这个函数是给决策树设定的第二个停止递归条件：当所有的特征都用完时，若还未能将数据集完全分类，选择该子集中分类最多的类别作为该集合的分类，这点有点像k近邻的最后一步。而下面这个函数的处理流程和上一节的classify0也十分相似，因此不再做批注。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def majorityCnt(classList):</span><br><span class="line">    classCount=&#123;&#125;</span><br><span class="line">    for vote in classList:</span><br><span class="line">        if vote not in classCount.keys():</span><br><span class="line">            classCount[vote]=0</span><br><span class="line">        classCount[vote] +=1</span><br><span class="line">    sortedClassCount = sorted(classCount.items(),key=operator.itemgetter(1),reverse=True)</span><br><span class="line">    return sortedClassCount[0][0]</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
@@ -379,7 +379,7 @@
 <p>上述代码解析：<br>创建决策树的代码本质上是一个递归算法，这也符合树这个数据结构的构建特色。</p>
 <ol>
 <li>首先第一行<strong>classlist = [example[-1] for example in dataset]</strong>是统计<strong>当前</strong>的（子）数据集的所有类别。这是为了下一步判断做准备。</li>
-<li>下一步是构建决策树的第一个重点–停止递归条件。该算法中仅考虑两种停止条件（其他决策树算法如CART采用最大递归次数等方法停止递归）：<ol>
+<li>下一步是构建决策树的第一个重点—停止递归条件。该算法中仅考虑两种停止条件（其他决策树算法如CART采用最大递归次数等方法停止递归）：<ol>
 <li>该（子）数据集中所有的数据均属于同一个类别。此时返回该类别。</li>
 <li>已经遍历完所有的特征（<strong>len(dataset[0])==1</strong>，即只剩下最后的分类结果），那么采用多数表决的方法，也就是majorityCnt函数。</li>
 </ol>
