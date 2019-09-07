@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="二叉树的遍历主要掌握前序、中序、后序、层次之间的重建树及序列转换 已知中序、后序重建树思路：抓住根结点是后序遍历的最后一个点，又是中序的分隔点。123456789101112131415Node* recreate(int postL,int postR,int inL,int inR)&amp;#123;	if(postL&amp;gt;postR)return NULL;	Node* root = new N">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PAT甲级-树算法专题">
+<meta property="og:url" content="http://salvationn.github.io/2019/08/26/PAT甲级-树算法专题/index.html">
+<meta property="og:site_name" content="N&#39;s Home">
+<meta property="og:description" content="二叉树的遍历主要掌握前序、中序、后序、层次之间的重建树及序列转换 已知中序、后序重建树思路：抓住根结点是后序遍历的最后一个点，又是中序的分隔点。123456789101112131415Node* recreate(int postL,int postR,int inL,int inR)&amp;#123;	if(postL&amp;gt;postR)return NULL;	Node* root = new N">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-05T14:21:58.951Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PAT甲级-树算法专题">
+<meta name="twitter:description" content="二叉树的遍历主要掌握前序、中序、后序、层次之间的重建树及序列转换 已知中序、后序重建树思路：抓住根结点是后序遍历的最后一个点，又是中序的分隔点。123456789101112131415Node* recreate(int postL,int postR,int inL,int inR)&amp;#123;	if(postL&amp;gt;postR)return NULL;	Node* root = new N">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://salvationn.github.io/2019/08/26/PAT甲级-树算法专题/">
+
+
+
+
+
+  <title>PAT甲级-树算法专题 | N's Home</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">N's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/08/26/PAT甲级-树算法专题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jackkwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="N's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">PAT甲级-树算法专题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-26T15:04:07+08:00">
+                2019-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/PAT/" itemprop="url" rel="index">
+                    <span itemprop="name">PAT</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h1><p>主要掌握前序、中序、后序、层次之间的重建树及序列转换</p>
+<h2 id="已知中序、后序重建树"><a href="#已知中序、后序重建树" class="headerlink" title="已知中序、后序重建树"></a>已知中序、后序重建树</h2><p>思路：抓住根结点是后序遍历的最后一个点，又是中序的分隔点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Node* recreate(int postL,int postR,int inL,int inR)</span><br><span class="line">&#123;</span><br><span class="line">	if(postL&gt;postR)return NULL;</span><br><span class="line">	Node* root = new Node;</span><br><span class="line">	root-&gt;id=postseq[postR];</span><br><span class="line">	int index;</span><br><span class="line">	for(index=inL;index&lt;=inR;index++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(inseq[index]==postseq[postR])break;</span><br><span class="line">	&#125;</span><br><span class="line">	int lnum=index-inL;</span><br><span class="line">	root-&gt;lchild = recreate(postL,postL+lnum-1,inL,inL+lnum-1);</span><br><span class="line">	root-&gt;rchild = recreate(postL+lnum,postR-1,inL+lnum+1,inR);</span><br><span class="line">	return root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="已知中序、先序重建树"><a href="#已知中序、先序重建树" class="headerlink" title="已知中序、先序重建树"></a>已知中序、先序重建树</h2><p>思路相同，只是根结点是前序的第一个点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Node* create(int preL,int preR,int inL,int inR)</span><br><span class="line">&#123;</span><br><span class="line">	if(preL&gt;preR)return NULL;</span><br><span class="line">	Node* root = new Node;</span><br><span class="line">	root-&gt;data = pre[preL];</span><br><span class="line">	int k;</span><br><span class="line">	for(k=inL;k&lt;=inR;k++)</span><br><span class="line">		if(in[k]==pre[preL])</span><br><span class="line">			break;</span><br><span class="line">	int numleft = k-inL;</span><br><span class="line">	root-&gt;lchild = create(preL+1,preL+numleft,inL,k-1);</span><br><span class="line">	root-&gt;rchild = create(preL+numleft+1,preR,k+1,inR);</span><br><span class="line">	return root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="已知先序、后序求中序"><a href="#已知先序、后序求中序" class="headerlink" title="已知先序、后序求中序"></a>已知先序、后序求中序</h2><h3 id="判别是否唯一"><a href="#判别是否唯一" class="headerlink" title="判别是否唯一"></a>判别是否唯一</h3><p>已知前序遍历和后序遍历的情况下，中序遍历不是唯一确定的。而且中序遍历的不确定性是由一个节点（只有一边子树）的左右子树的不确定性决定的。例如前序遍历ab，后序遍历ba，a为根，b为子树，在中序遍历中如果b为左子树，则中序遍历为ba；如果b为右子树，则中序遍历为ab。所以当这种节点有n个时，中序遍历的可能性就有2^n。<br>判定特殊结点方法：规律就是(此时a,b分别为前序遍历和后序遍历的字符串)：<strong>a[i]==b[j]时，a[i+1]==b[j-1]则产生一个特殊节点。</strong>（此处转载：<a href="https://blog.csdn.net/qq_37437983/article/details/79613947）" target="_blank" rel="noopener">https://blog.csdn.net/qq_37437983/article/details/79613947）</a></p>
+<h3 id="已知先序、后序求任一中序"><a href="#已知先序、后序求任一中序" class="headerlink" title="已知先序、后序求任一中序"></a>已知先序、后序求任一中序</h3><p>思路：每次找到前序序列中与后序序列的倒数第二个点相等的位置i，如果i是前序的第二个点，则此时有多种情况；如果不是，则前序递归片段为（前序第二个点，i-1），后序递归起点是第一个，长度相同（<strong>这里的思路是：后序遍历的倒数第二个点必然是根结点的右孩子，则找到了前序中右孩子的位置即可区分左右子树。而这个“孩子”是在前序的第二个点，那就不好说了，因为它有可能是右子树，也可能是左子树</strong>）。然后存入(或输出)当前后序的最后一个点(目前的根结点)，然后递归剩余部分。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">void getIn(int preLeft, int preRight, int postLeft, int postRight) &#123;</span><br><span class="line">    if(preLeft == preRight) &#123;</span><br><span class="line">        in.push_back(pre[preLeft]);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    if (pre[preLeft] == post[postRight]) &#123;</span><br><span class="line">        int i = preLeft + 1;</span><br><span class="line">        while (i &lt;= preRight &amp;&amp; pre[i] != post[postRight-1]) i++;</span><br><span class="line">        if (i - preLeft &gt; 1)</span><br><span class="line">            getIn(preLeft + 1, i - 1, postLeft, postLeft + (i - preLeft - 1) - 1);</span><br><span class="line">        else</span><br><span class="line">            unique = false;</span><br><span class="line">        in.push_back(post[postRight]);</span><br><span class="line">        getIn(i, preRight, postLeft + (i - preLeft - 1), postRight - 1);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="层次遍历的另一种思路"><a href="#层次遍历的另一种思路" class="headerlink" title="层次遍历的另一种思路"></a>层次遍历的另一种思路</h2><p>除了传统的在队列中边取出边放入之外，还可以用vector数组存放层次遍历的结构，这样无论之后要对层序遍历做什么，都可以依照vector数组来改动。<br>例题：1127</p>
+<h1 id="BST"><a href="#BST" class="headerlink" title="BST"></a>BST</h1><h2 id="BST的插入"><a href="#BST的插入" class="headerlink" title="BST的插入"></a>BST的插入</h2><p>指以BST的前序序列插入，有模板。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void insert(Node* &amp;root,int data)</span><br><span class="line">&#123;</span><br><span class="line">	if(root==NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		root=new Node;</span><br><span class="line">		root-&gt;data=data;</span><br><span class="line">		root-&gt;left=NULL;</span><br><span class="line">		root-&gt;right=NULL;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	if(data&lt;root-&gt;data)insert(root-&gt;left,data);</span><br><span class="line">	else insert(root-&gt;right,data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里有一点要注意，小心题设的规定，左子树是小于等于还是小于，别光套模板而进圈套了。</p>
+<h2 id="一条至关重要的性质"><a href="#一条至关重要的性质" class="headerlink" title="一条至关重要的性质"></a>一条至关重要的性质</h2><p><strong>BST的中序遍历结果是有序的!!!!</strong><br>例题：1064-完全二叉搜索树</p>
+<h2 id="找公共祖先"><a href="#找公共祖先" class="headerlink" title="找公共祖先"></a>找公共祖先</h2><p>基本思想是：从根节点开始，如果两个点都在根结点的左子树，则递归根结点的左孩子；如果两个点都在根结点的右子树，则递归根结点的右孩子；如果两个点在根结点的左右两侧，则当前根结点就是两个点的公共祖先。<br>目前碰到的题目是已知中序和前序求公共祖先，根据(1)前序遍历的第一个结点是根结点(2)中序遍历根结点的左边是左子树、右边是右子树，灵活地进行递归，不用建树。实际上，已知后序和中序也是一样地，无非是符号变一下的问题。<br>下面的代码是已知前序和中序求LCA<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">void lca(int low,int high,int preroot,int u,int v)</span><br><span class="line">&#123;</span><br><span class="line">	if(low&gt;high)return;</span><br><span class="line">	int posr=pos[pre[preroot]],posu=pos[u],posv=pos[v];</span><br><span class="line">	//printf(&quot;%d %d %d\n&quot;,posr,posu,posv);</span><br><span class="line">	if(posu&lt;posr&amp;&amp;posv&lt;posr)</span><br><span class="line">		lca(low,posr-1,preroot+1,u,v);</span><br><span class="line">	else if(posu&gt;posr&amp;&amp;posv&gt;posr)</span><br><span class="line">		lca(posr+1,high,preroot+1+posr-low,u,v);</span><br><span class="line">	else if((posu&gt;posr&amp;&amp;posv&lt;posr)||(posu&lt;posr&amp;&amp;posv&gt;posr))</span><br><span class="line">		printf(&quot;LCA of %d and %d is %d.\n&quot;,u,v,in[posr]);</span><br><span class="line">	else if(posr==posu)</span><br><span class="line">		printf(&quot;%d is an ancestor of %d.\n&quot;,u,v);</span><br><span class="line">	else if(posr==posv)</span><br><span class="line">		printf(&quot;%d is an ancestor of %d.\n&quot;,v,u);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="注意了！！！！！"><a href="#注意了！！！！！" class="headerlink" title="注意了！！！！！"></a>注意了！！！！！</h2><p><strong>二叉树的题目真的不用怕，尤其是已知遍历序列的题，只要紧抓各种遍历的特点就好。</strong></p>
+<h1 id="ALV"><a href="#ALV" class="headerlink" title="ALV"></a>ALV</h1><p>这个最多考建树吧，说实话没什么特别好考的，有空默写一下就好。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">struct Node</span><br><span class="line">&#123;</span><br><span class="line">	int v,height;</span><br><span class="line">	Node *lchild,*rchild;</span><br><span class="line">&#125;*root;</span><br><span class="line">Node* newNode(int v)</span><br><span class="line">&#123;</span><br><span class="line">	Node* node=new Node;</span><br><span class="line">	node-&gt;v=v;</span><br><span class="line">	node-&gt;height=1;</span><br><span class="line">	node-&gt;lchild=node-&gt;rchild=NULL;</span><br><span class="line">	return node;</span><br><span class="line">&#125;</span><br><span class="line">int getHeight(Node* root)</span><br><span class="line">&#123;</span><br><span class="line">	if(root==NULL)return 0;</span><br><span class="line">	return root-&gt;height;</span><br><span class="line">&#125;</span><br><span class="line">void upgradeHeight(Node* root)</span><br><span class="line">&#123;</span><br><span class="line">	root-&gt;height=max(getHeight(root-&gt;lchild),getHeight(root-&gt;rchild))+1;</span><br><span class="line">&#125;</span><br><span class="line">int calBalance(Node* root)</span><br><span class="line">&#123;</span><br><span class="line">	return getHeight(root-&gt;lchild)-getHeight(root-&gt;rchild);</span><br><span class="line">&#125;</span><br><span class="line">void l(Node* &amp;root)</span><br><span class="line">&#123;</span><br><span class="line">	Node* tmp=root-&gt;rchild;</span><br><span class="line">	root-&gt;rchild=tmp-&gt;lchild;</span><br><span class="line">	tmp-&gt;lchild=root;</span><br><span class="line">	upgradeHeight(root);</span><br><span class="line">	upgradeHeight(tmp);</span><br><span class="line">	root=tmp;</span><br><span class="line">&#125;</span><br><span class="line">void r(Node* &amp;root)</span><br><span class="line">&#123;</span><br><span class="line">	Node* tmp=root-&gt;lchild;</span><br><span class="line">	root-&gt;lchild=tmp-&gt;rchild;</span><br><span class="line">	tmp-&gt;rchild=root;</span><br><span class="line">	upgradeHeight(root);</span><br><span class="line">	upgradeHeight(tmp);</span><br><span class="line">	root=tmp;</span><br><span class="line">&#125;</span><br><span class="line">void insert(Node* &amp;root,int v)</span><br><span class="line">&#123;</span><br><span class="line">	if(root==NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		root = newNode(v);return;</span><br><span class="line">	&#125;</span><br><span class="line">	if(v&lt;root-&gt;v)</span><br><span class="line">	&#123;</span><br><span class="line">		insert(root-&gt;lchild,v);</span><br><span class="line">		upgradeHeight(root);</span><br><span class="line">		if(calBalance(root)==2)</span><br><span class="line">		&#123;</span><br><span class="line">			if(calBalance(root-&gt;lchild)==1)</span><br><span class="line">			&#123;</span><br><span class="line">				r(root);</span><br><span class="line">			&#125;</span><br><span class="line">			else if(calBalance(root-&gt;lchild)==-1)</span><br><span class="line">			&#123;</span><br><span class="line">				l(root-&gt;lchild);</span><br><span class="line">				r(root);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		insert(root-&gt;rchild,v);</span><br><span class="line">		upgradeHeight(root);</span><br><span class="line">		if(calBalance(root)==-2)</span><br><span class="line">		&#123;</span><br><span class="line">			if(calBalance(root-&gt;rchild)==-1)</span><br><span class="line">			&#123;</span><br><span class="line">				l(root);</span><br><span class="line">			&#125;</span><br><span class="line">			else if(calBalance(root-&gt;rchild)==1)</span><br><span class="line">			&#123;</span><br><span class="line">				r(root-&gt;rchild);</span><br><span class="line">				l(root);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意区分一下树的高度和结点的深度啊，抄的时候都能抄错。</p>
+<h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><p>堆排序的重点是记住它是一个特殊的完全二叉树，大项堆的双亲结点比孩子结点大，小项堆的双亲结点比孩子结点小。<br>甲级的堆应该不会特别难，考到了也就是建堆，套模板就好。建堆（自顶向下）的核心思想是：按照原始顺序输入数据存在数组中，从最靠右下的非叶子结点开始，检查其与其孩子的大小，若比孩子小，就交换二者位置，交换后仍需检查它与交换后的孩子的大小，以此类推，直到满足堆的定义。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">//大项堆的构建及堆排序</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int heap[200];</span><br><span class="line">void downjust(int low,int high)</span><br><span class="line">&#123;</span><br><span class="line">	int i=low,j=i*2;</span><br><span class="line">	while(j&lt;=high)</span><br><span class="line">	&#123;</span><br><span class="line">		if(j+1&lt;=high&amp;&amp;heap[j]&lt;heap[j+1])</span><br><span class="line">			j=j+1;</span><br><span class="line">		if(heap[i]&lt;heap[j])</span><br><span class="line">		&#123;</span><br><span class="line">			swap(heap[i],heap[j]);</span><br><span class="line">			i=j;</span><br><span class="line">			j=j*2;</span><br><span class="line">		&#125;</span><br><span class="line">		else break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int n;</span><br><span class="line">void create()</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=n/2;i&gt;=1;i--)</span><br><span class="line">		downjust(i,n);</span><br><span class="line">&#125;</span><br><span class="line">void heapsort()</span><br><span class="line">&#123;</span><br><span class="line">	create();</span><br><span class="line">	for(int i=n;i&gt;1;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		swap(heap[i],heap[1]);</span><br><span class="line">		downjust(1,i-1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">		cin&gt;&gt;heap[i];</span><br><span class="line">	heapsort();</span><br><span class="line">	for(int i=1;i&lt;=n;i++)cout&lt;&lt;heap[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="中缀表达式"><a href="#中缀表达式" class="headerlink" title="中缀表达式"></a>中缀表达式</h1><p>核心思想：当前结点不是<strong>根结点或叶子结点</strong>时，递归左孩子前要输出“（”；若<strong>不是根结点且有右孩子</strong>，则递归右孩子后输出“）”。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">void inorder(int v)</span><br><span class="line">&#123;</span><br><span class="line">	if(node[v].left!=-1)</span><br><span class="line">	&#123;</span><br><span class="line">		if(v!=root)ans+=&quot;(&quot;;</span><br><span class="line">		inorder(node[v].left);</span><br><span class="line">	&#125;</span><br><span class="line">	else if(node[v].right!=-1&amp;&amp;v!=root)ans+=&quot;(&quot;;</span><br><span class="line">	ans+=node[v].data;</span><br><span class="line">	if(node[v].right!=-1)</span><br><span class="line">	&#123;</span><br><span class="line">		inorder(node[v].right);</span><br><span class="line">		if(v!=root)ans+=&quot;)&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/17/PAT甲级-图算法专题/" rel="next" title="PAT甲级-图算法专题">
+                <i class="fa fa-chevron-left"></i> PAT甲级-图算法专题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/29/PAT甲级-STL/" rel="prev" title="PAT甲级-STL">
+                PAT甲级-STL <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Jackkwin</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#二叉树的遍历"><span class="nav-number">1.</span> <span class="nav-text">二叉树的遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#已知中序、后序重建树"><span class="nav-number">1.1.</span> <span class="nav-text">已知中序、后序重建树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#已知中序、先序重建树"><span class="nav-number">1.2.</span> <span class="nav-text">已知中序、先序重建树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#已知先序、后序求中序"><span class="nav-number">1.3.</span> <span class="nav-text">已知先序、后序求中序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判别是否唯一"><span class="nav-number">1.3.1.</span> <span class="nav-text">判别是否唯一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#已知先序、后序求任一中序"><span class="nav-number">1.3.2.</span> <span class="nav-text">已知先序、后序求任一中序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#层次遍历的另一种思路"><span class="nav-number">1.4.</span> <span class="nav-text">层次遍历的另一种思路</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BST"><span class="nav-number">2.</span> <span class="nav-text">BST</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BST的插入"><span class="nav-number">2.1.</span> <span class="nav-text">BST的插入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一条至关重要的性质"><span class="nav-number">2.2.</span> <span class="nav-text">一条至关重要的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#找公共祖先"><span class="nav-number">2.3.</span> <span class="nav-text">找公共祖先</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意了！！！！！"><span class="nav-number">2.4.</span> <span class="nav-text">注意了！！！！！</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ALV"><span class="nav-number">3.</span> <span class="nav-text">ALV</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#堆"><span class="nav-number">4.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#中缀表达式"><span class="nav-number">5.</span> <span class="nav-text">中缀表达式</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jackkwin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>访问总量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>

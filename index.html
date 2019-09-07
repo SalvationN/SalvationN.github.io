@@ -249,6 +249,626 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/09/02/PAT甲级-各种基础问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jackkwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="N's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/02/PAT甲级-各种基础问题/" itemprop="url">PAT甲级-各种基础问题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-02T17:17:24+08:00">
+                2019-09-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/PAT/" itemprop="url" rel="index">
+                    <span itemprop="name">PAT</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="大数加法"><a href="#大数加法" class="headerlink" title="大数加法"></a>大数加法</h1><p>这个没有看晴神宝典的代码，那个更系统一些，这个是自己写的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">string add(string s)</span><br><span class="line">&#123;</span><br><span class="line">	string s0=&quot;&quot;;</span><br><span class="line">	string cy,rest;</span><br><span class="line">	int len=s.length();bool carry=false;</span><br><span class="line">	for(int i=0;i&lt;s.length();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int tmp=(s[i]-&apos;0&apos;)+(s[len-1-i]-&apos;0&apos;)+carry;</span><br><span class="line">		if(tmp&gt;=10)carry=true;else carry=false;</span><br><span class="line">		tmp%=10;</span><br><span class="line">		rest=to_string(tmp);</span><br><span class="line">		s0.insert(0,rest);</span><br><span class="line">	&#125;</span><br><span class="line">	if(carry)s0.insert(0,&quot;1&quot;);</span><br><span class="line">	return s0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="哈希映射及查找"><a href="#哈希映射及查找" class="headerlink" title="哈希映射及查找"></a>哈希映射及查找</h1><p>主要注意冲突解决办法：线性探测法和平方探测法。<strong>注意：PAT的平方探测法中k &lt; maxsize</strong>。<br>插入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">for(int i=0;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int tmp;</span><br><span class="line">		cin&gt;&gt;tmp;</span><br><span class="line">		if(hashS[tmp%maxsize]==0)hashS[tmp%maxsize]=tmp;</span><br><span class="line">		else</span><br><span class="line">		&#123;</span><br><span class="line">			bool flag=false;</span><br><span class="line">			for(int k=1;k&lt;maxsize;k++)</span><br><span class="line">			&#123;</span><br><span class="line">				if(hashS[(tmp+k*k)%maxsize]==0)</span><br><span class="line">				&#123;</span><br><span class="line">					hashS[(tmp+k*k)%maxsize]=tmp;</span><br><span class="line">					flag=true;</span><br><span class="line">					break;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">			if(flag==false)</span><br><span class="line">			&#123;</span><br><span class="line">				printf(&quot;%d cannot be inserted.\n&quot;,tmp);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure></p>
+<p>平均查找时间：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int total=0;</span><br><span class="line">	for(int i=0;i&lt;m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		int x,cnt=0;</span><br><span class="line">		cin&gt;&gt;x;</span><br><span class="line">		for(int k=0;k&lt;=maxsize;k++)</span><br><span class="line">		&#123;</span><br><span class="line">			cnt++;</span><br><span class="line">			if(hashS[(x+k*k)%maxsize]==x||hashS[(x+k*k)%maxsize]==0)break;</span><br><span class="line">		&#125;</span><br><span class="line">		total+=cnt;</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;%.1f\n&quot;,double(total*1.0/m));</span><br></pre></td></tr></table></figure></p>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><ol>
+<li>一切关于id的问题一定要注意0的输入(尤其是有正负时)以及最后的输出位数。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/08/29/PAT甲级-STL/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jackkwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="N's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/29/PAT甲级-STL/" itemprop="url">PAT甲级-STL</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-29T20:54:29+08:00">
+                2019-08-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/PAT/" itemprop="url" rel="index">
+                    <span itemprop="name">PAT</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>不完全是STL，中间会穿插一些其他知识。</p>
+<h1 id="字符串哈希"><a href="#字符串哈希" class="headerlink" title="字符串哈希"></a>字符串哈希</h1><p>应用实例：1039.<br>其实还是map方便一些，但如果map运行超时，就要考虑一下字符hash了。基本原理就是用0~25表示A~Z，然后以26进制的形式对每一位字符进行转换并相加。<strong>注意，字符串长度越长，所需要的hash映射表越大(26^len)。</strong><br>PS：顺手百度了一下，STL中的map是用红黑树来实现的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int chash(char s[],int len)</span><br><span class="line">&#123;</span><br><span class="line">	int id=0;</span><br><span class="line">	for(int i=0;i&lt;len;i++)</span><br><span class="line">		id=id*26+s[i]-&apos;0&apos;;</span><br><span class="line">	return id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="set"><a href="#set" class="headerlink" title="set"></a>set</h1><p>主要注意两点：</p>
+<ol>
+<li>set的遍历不同于vector，只能用iterator。</li>
+<li>判定两个集合并集个数的较少时间复杂度方法如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int id1,id2,maxlen;</span><br><span class="line">scanf(&quot;%d%d&quot;,&amp;id1,&amp;id2);</span><br><span class="line">int totalnum=sets[id2].size(),samenum=0;</span><br><span class="line">for(set&lt;int&gt;::iterator it=sets[id1].begin();it!=sets[id1].end();it++)</span><br><span class="line">&#123;</span><br><span class="line">	if(sets[id2].find(*it)!=sets[id2].end())samenum++;</span><br><span class="line">	else totalnum++;</span><br><span class="line">&#125;</span><br><span class="line">printf(&quot;%.1f%%\n&quot;,samenum*100.0/totalnum);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>如果遇到特殊问题（需要根据某特性排序），可以选择重载运算符。即构建一个结构体，在结构体内重载运算符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">struct node &#123;</span><br><span class="line">    int value, cnt;</span><br><span class="line">    bool operator &lt; (const node &amp;a) const &#123;</span><br><span class="line">        return (cnt != a.cnt) ? cnt &gt; a.cnt : value &lt; a.value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h1 id="string"><a href="#string" class="headerlink" title="string"></a>string</h1><h2 id="insert-pos-string"><a href="#insert-pos-string" class="headerlink" title="insert(pos,string)"></a>insert(pos,string)</h2><p>在pos位置插入string</p>
+<h2 id="erase"><a href="#erase" class="headerlink" title="erase()"></a>erase()</h2><p>erase(it):删除单元素<br>erase(first，last)：删除区间元素</p>
+<h2 id="substr-pos-len"><a href="#substr-pos-len" class="headerlink" title="substr(pos,len)"></a>substr(pos,len)</h2><p>截取从pos开始长度为len的字符串</p>
+<h1 id="map"><a href="#map" class="headerlink" title="map"></a>map</h1><p>map的访问可以像vector一样用数组下标形式访问，若用迭代器遍历，则用it-&gt;first和it-&gt;second来访问map的键值。</p>
+<h2 id="erase-1"><a href="#erase-1" class="headerlink" title="erase()"></a>erase()</h2><ul>
+<li>删除单个元素。<br>方法一：it = mp.find(“xx”);mp.erase(it);<br>方法二：mp.erase(“xx”);</li>
+<li>删除区间元素<br>用迭代器方法。先find出first和last，然后erase(first,last)。</li>
+</ul>
+<h1 id="STL题目注意事项"><a href="#STL题目注意事项" class="headerlink" title="STL题目注意事项"></a>STL题目注意事项</h1><ol>
+<li><strong>一定要在稿纸上写下思路，想清楚用这个STL能不能达到目的</strong></li>
+<li>除非涉及整体排序问题，一般的有多维指标的STL问题最好用多个STL存储，然后分开统计 </li>
+<li>事实上，涉及到以字符串为索引的排序问题，可以用多个map<string,int等>存储指标数据，待到所有数据全部统计完毕，在通过遍历将这些数据存到结构体中，这样省掉了字符串索引和编号映射的问题。</string,int等></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/08/26/PAT甲级-树算法专题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jackkwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="N's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/26/PAT甲级-树算法专题/" itemprop="url">PAT甲级-树算法专题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-26T15:04:07+08:00">
+                2019-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/PAT/" itemprop="url" rel="index">
+                    <span itemprop="name">PAT</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h1><p>主要掌握前序、中序、后序、层次之间的重建树及序列转换</p>
+<h2 id="已知中序、后序重建树"><a href="#已知中序、后序重建树" class="headerlink" title="已知中序、后序重建树"></a>已知中序、后序重建树</h2><p>思路：抓住根结点是后序遍历的最后一个点，又是中序的分隔点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Node* recreate(int postL,int postR,int inL,int inR)</span><br><span class="line">&#123;</span><br><span class="line">	if(postL&gt;postR)return NULL;</span><br><span class="line">	Node* root = new Node;</span><br><span class="line">	root-&gt;id=postseq[postR];</span><br><span class="line">	int index;</span><br><span class="line">	for(index=inL;index&lt;=inR;index++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(inseq[index]==postseq[postR])break;</span><br><span class="line">	&#125;</span><br><span class="line">	int lnum=index-inL;</span><br><span class="line">	root-&gt;lchild = recreate(postL,postL+lnum-1,inL,inL+lnum-1);</span><br><span class="line">	root-&gt;rchild = recreate(postL+lnum,postR-1,inL+lnum+1,inR);</span><br><span class="line">	return root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="已知中序、先序重建树"><a href="#已知中序、先序重建树" class="headerlink" title="已知中序、先序重建树"></a>已知中序、先序重建树</h2><p>思路相同，只是根结点是前序的第一个点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Node* create(int preL,int preR,int inL,int inR)</span><br><span class="line">&#123;</span><br><span class="line">	if(preL&gt;preR)return NULL;</span><br><span class="line">	Node* root = new Node;</span><br><span class="line">	root-&gt;data = pre[preL];</span><br><span class="line">	int k;</span><br><span class="line">	for(k=inL;k&lt;=inR;k++)</span><br><span class="line">		if(in[k]==pre[preL])</span><br><span class="line">			break;</span><br><span class="line">	int numleft = k-inL;</span><br><span class="line">	root-&gt;lchild = create(preL+1,preL+numleft,inL,k-1);</span><br><span class="line">	root-&gt;rchild = create(preL+numleft+1,preR,k+1,inR);</span><br><span class="line">	return root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="已知先序、后序求中序"><a href="#已知先序、后序求中序" class="headerlink" title="已知先序、后序求中序"></a>已知先序、后序求中序</h2><h3 id="判别是否唯一"><a href="#判别是否唯一" class="headerlink" title="判别是否唯一"></a>判别是否唯一</h3><p>已知前序遍历和后序遍历的情况下，中序遍历不是唯一确定的。而且中序遍历的不确定性是由一个节点（只有一边子树）的左右子树的不确定性决定的。例如前序遍历ab，后序遍历ba，a为根，b为子树，在中序遍历中如果b为左子树，则中序遍历为ba；如果b为右子树，则中序遍历为ab。所以当这种节点有n个时，中序遍历的可能性就有2^n。<br>判定特殊结点方法：规律就是(此时a,b分别为前序遍历和后序遍历的字符串)：<strong>a[i]==b[j]时，a[i+1]==b[j-1]则产生一个特殊节点。</strong>（此处转载：<a href="https://blog.csdn.net/qq_37437983/article/details/79613947）" target="_blank" rel="noopener">https://blog.csdn.net/qq_37437983/article/details/79613947）</a></p>
+<h3 id="已知先序、后序求任一中序"><a href="#已知先序、后序求任一中序" class="headerlink" title="已知先序、后序求任一中序"></a>已知先序、后序求任一中序</h3><p>思路：每次找到前序序列中与后序序列的倒数第二个点相等的位置i，如果i是前序的第二个点，则此时有多种情况；如果不是，则前序递归片段为（前序第二个点，i-1），后序递归起点是第一个，长度相同（<strong>这里的思路是：后序遍历的倒数第二个点必然是根结点的右孩子，则找到了前序中右孩子的位置即可区分左右子树。而这个“孩子”是在前序的第二个点，那就不好说了，因为它有可能是右子树，也可能是左子树</strong>）。然后存入(或输出)当前后序的最后一个点(目前的根结点)，然后递归剩余部分。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">void getIn(int preLeft, int preRight, int postLeft, int postRight) &#123;</span><br><span class="line">    if(preLeft == preRight) &#123;</span><br><span class="line">        in.push_back(pre[preLeft]);</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    if (pre[preLeft] == post[postRight]) &#123;</span><br><span class="line">        int i = preLeft + 1;</span><br><span class="line">        while (i &lt;= preRight &amp;&amp; pre[i] != post[postRight-1]) i++;</span><br><span class="line">        if (i - preLeft &gt; 1)</span><br><span class="line">            getIn(preLeft + 1, i - 1, postLeft, postLeft + (i - preLeft - 1) - 1);</span><br><span class="line">        else</span><br><span class="line">            unique = false;</span><br><span class="line">        in.push_back(post[postRight]);</span><br><span class="line">        getIn(i, preRight, postLeft + (i - preLeft - 1), postRight - 1);</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="层次遍历的另一种思路"><a href="#层次遍历的另一种思路" class="headerlink" title="层次遍历的另一种思路"></a>层次遍历的另一种思路</h2><p>除了传统的在队列中边取出边放入之外，还可以用vector数组存放层次遍历的结构，这样无论之后要对层序遍历做什么，都可以依照vector数组来改动。<br>例题：1127</p>
+<h1 id="BST"><a href="#BST" class="headerlink" title="BST"></a>BST</h1><h2 id="BST的插入"><a href="#BST的插入" class="headerlink" title="BST的插入"></a>BST的插入</h2><p>指以BST的前序序列插入，有模板。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">void insert(Node* &amp;root,int data)</span><br><span class="line">&#123;</span><br><span class="line">	if(root==NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		root=new Node;</span><br><span class="line">		root-&gt;data=data;</span><br><span class="line">		root-&gt;left=NULL;</span><br><span class="line">		root-&gt;right=NULL;</span><br><span class="line">		return;</span><br><span class="line">	&#125;</span><br><span class="line">	if(data&lt;root-&gt;data)insert(root-&gt;left,data);</span><br><span class="line">	else insert(root-&gt;right,data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里有一点要注意，小心题设的规定，左子树是小于等于还是小于，别光套模板而进圈套了。</p>
+<h2 id="一条至关重要的性质"><a href="#一条至关重要的性质" class="headerlink" title="一条至关重要的性质"></a>一条至关重要的性质</h2><p><strong>BST的中序遍历结果是有序的!!!!</strong><br>例题：1064-完全二叉搜索树</p>
+<h2 id="找公共祖先"><a href="#找公共祖先" class="headerlink" title="找公共祖先"></a>找公共祖先</h2><p>基本思想是：从根节点开始，如果两个点都在根结点的左子树，则递归根结点的左孩子；如果两个点都在根结点的右子树，则递归根结点的右孩子；如果两个点在根结点的左右两侧，则当前根结点就是两个点的公共祖先。<br>目前碰到的题目是已知中序和前序求公共祖先，根据(1)前序遍历的第一个结点是根结点(2)中序遍历根结点的左边是左子树、右边是右子树，灵活地进行递归，不用建树。实际上，已知后序和中序也是一样地，无非是符号变一下的问题。<br>下面的代码是已知前序和中序求LCA<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">void lca(int low,int high,int preroot,int u,int v)</span><br><span class="line">&#123;</span><br><span class="line">	if(low&gt;high)return;</span><br><span class="line">	int posr=pos[pre[preroot]],posu=pos[u],posv=pos[v];</span><br><span class="line">	//printf(&quot;%d %d %d\n&quot;,posr,posu,posv);</span><br><span class="line">	if(posu&lt;posr&amp;&amp;posv&lt;posr)</span><br><span class="line">		lca(low,posr-1,preroot+1,u,v);</span><br><span class="line">	else if(posu&gt;posr&amp;&amp;posv&gt;posr)</span><br><span class="line">		lca(posr+1,high,preroot+1+posr-low,u,v);</span><br><span class="line">	else if((posu&gt;posr&amp;&amp;posv&lt;posr)||(posu&lt;posr&amp;&amp;posv&gt;posr))</span><br><span class="line">		printf(&quot;LCA of %d and %d is %d.\n&quot;,u,v,in[posr]);</span><br><span class="line">	else if(posr==posu)</span><br><span class="line">		printf(&quot;%d is an ancestor of %d.\n&quot;,u,v);</span><br><span class="line">	else if(posr==posv)</span><br><span class="line">		printf(&quot;%d is an ancestor of %d.\n&quot;,v,u);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="注意了！！！！！"><a href="#注意了！！！！！" class="headerlink" title="注意了！！！！！"></a>注意了！！！！！</h2><p><strong>二叉树的题目真的不用怕，尤其是已知遍历序列的题，只要紧抓各种遍历的特点就好。</strong></p>
+<h1 id="ALV"><a href="#ALV" class="headerlink" title="ALV"></a>ALV</h1><p>这个最多考建树吧，说实话没什么特别好考的，有空默写一下就好。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">struct Node</span><br><span class="line">&#123;</span><br><span class="line">	int v,height;</span><br><span class="line">	Node *lchild,*rchild;</span><br><span class="line">&#125;*root;</span><br><span class="line">Node* newNode(int v)</span><br><span class="line">&#123;</span><br><span class="line">	Node* node=new Node;</span><br><span class="line">	node-&gt;v=v;</span><br><span class="line">	node-&gt;height=1;</span><br><span class="line">	node-&gt;lchild=node-&gt;rchild=NULL;</span><br><span class="line">	return node;</span><br><span class="line">&#125;</span><br><span class="line">int getHeight(Node* root)</span><br><span class="line">&#123;</span><br><span class="line">	if(root==NULL)return 0;</span><br><span class="line">	return root-&gt;height;</span><br><span class="line">&#125;</span><br><span class="line">void upgradeHeight(Node* root)</span><br><span class="line">&#123;</span><br><span class="line">	root-&gt;height=max(getHeight(root-&gt;lchild),getHeight(root-&gt;rchild))+1;</span><br><span class="line">&#125;</span><br><span class="line">int calBalance(Node* root)</span><br><span class="line">&#123;</span><br><span class="line">	return getHeight(root-&gt;lchild)-getHeight(root-&gt;rchild);</span><br><span class="line">&#125;</span><br><span class="line">void l(Node* &amp;root)</span><br><span class="line">&#123;</span><br><span class="line">	Node* tmp=root-&gt;rchild;</span><br><span class="line">	root-&gt;rchild=tmp-&gt;lchild;</span><br><span class="line">	tmp-&gt;lchild=root;</span><br><span class="line">	upgradeHeight(root);</span><br><span class="line">	upgradeHeight(tmp);</span><br><span class="line">	root=tmp;</span><br><span class="line">&#125;</span><br><span class="line">void r(Node* &amp;root)</span><br><span class="line">&#123;</span><br><span class="line">	Node* tmp=root-&gt;lchild;</span><br><span class="line">	root-&gt;lchild=tmp-&gt;rchild;</span><br><span class="line">	tmp-&gt;rchild=root;</span><br><span class="line">	upgradeHeight(root);</span><br><span class="line">	upgradeHeight(tmp);</span><br><span class="line">	root=tmp;</span><br><span class="line">&#125;</span><br><span class="line">void insert(Node* &amp;root,int v)</span><br><span class="line">&#123;</span><br><span class="line">	if(root==NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		root = newNode(v);return;</span><br><span class="line">	&#125;</span><br><span class="line">	if(v&lt;root-&gt;v)</span><br><span class="line">	&#123;</span><br><span class="line">		insert(root-&gt;lchild,v);</span><br><span class="line">		upgradeHeight(root);</span><br><span class="line">		if(calBalance(root)==2)</span><br><span class="line">		&#123;</span><br><span class="line">			if(calBalance(root-&gt;lchild)==1)</span><br><span class="line">			&#123;</span><br><span class="line">				r(root);</span><br><span class="line">			&#125;</span><br><span class="line">			else if(calBalance(root-&gt;lchild)==-1)</span><br><span class="line">			&#123;</span><br><span class="line">				l(root-&gt;lchild);</span><br><span class="line">				r(root);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		insert(root-&gt;rchild,v);</span><br><span class="line">		upgradeHeight(root);</span><br><span class="line">		if(calBalance(root)==-2)</span><br><span class="line">		&#123;</span><br><span class="line">			if(calBalance(root-&gt;rchild)==-1)</span><br><span class="line">			&#123;</span><br><span class="line">				l(root);</span><br><span class="line">			&#125;</span><br><span class="line">			else if(calBalance(root-&gt;rchild)==1)</span><br><span class="line">			&#123;</span><br><span class="line">				r(root-&gt;rchild);</span><br><span class="line">				l(root);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意区分一下树的高度和结点的深度啊，抄的时候都能抄错。</p>
+<h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><p>堆排序的重点是记住它是一个特殊的完全二叉树，大项堆的双亲结点比孩子结点大，小项堆的双亲结点比孩子结点小。<br>甲级的堆应该不会特别难，考到了也就是建堆，套模板就好。建堆（自顶向下）的核心思想是：按照原始顺序输入数据存在数组中，从最靠右下的非叶子结点开始，检查其与其孩子的大小，若比孩子小，就交换二者位置，交换后仍需检查它与交换后的孩子的大小，以此类推，直到满足堆的定义。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">//大项堆的构建及堆排序</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int heap[200];</span><br><span class="line">void downjust(int low,int high)</span><br><span class="line">&#123;</span><br><span class="line">	int i=low,j=i*2;</span><br><span class="line">	while(j&lt;=high)</span><br><span class="line">	&#123;</span><br><span class="line">		if(j+1&lt;=high&amp;&amp;heap[j]&lt;heap[j+1])</span><br><span class="line">			j=j+1;</span><br><span class="line">		if(heap[i]&lt;heap[j])</span><br><span class="line">		&#123;</span><br><span class="line">			swap(heap[i],heap[j]);</span><br><span class="line">			i=j;</span><br><span class="line">			j=j*2;</span><br><span class="line">		&#125;</span><br><span class="line">		else break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int n;</span><br><span class="line">void create()</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=n/2;i&gt;=1;i--)</span><br><span class="line">		downjust(i,n);</span><br><span class="line">&#125;</span><br><span class="line">void heapsort()</span><br><span class="line">&#123;</span><br><span class="line">	create();</span><br><span class="line">	for(int i=n;i&gt;1;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		swap(heap[i],heap[1]);</span><br><span class="line">		downjust(1,i-1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">		cin&gt;&gt;heap[i];</span><br><span class="line">	heapsort();</span><br><span class="line">	for(int i=1;i&lt;=n;i++)cout&lt;&lt;heap[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="中缀表达式"><a href="#中缀表达式" class="headerlink" title="中缀表达式"></a>中缀表达式</h1><p>核心思想：当前结点不是<strong>根结点或叶子结点</strong>时，递归左孩子前要输出“（”；若<strong>不是根结点且有右孩子</strong>，则递归右孩子后输出“）”。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">void inorder(int v)</span><br><span class="line">&#123;</span><br><span class="line">	if(node[v].left!=-1)</span><br><span class="line">	&#123;</span><br><span class="line">		if(v!=root)ans+=&quot;(&quot;;</span><br><span class="line">		inorder(node[v].left);</span><br><span class="line">	&#125;</span><br><span class="line">	else if(node[v].right!=-1&amp;&amp;v!=root)ans+=&quot;(&quot;;</span><br><span class="line">	ans+=node[v].data;</span><br><span class="line">	if(node[v].right!=-1)</span><br><span class="line">	&#123;</span><br><span class="line">		inorder(node[v].right);</span><br><span class="line">		if(v!=root)ans+=&quot;)&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/08/17/PAT甲级-图算法专题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jackkwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="N's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/08/17/PAT甲级-图算法专题/" itemprop="url">PAT甲级-图算法专题</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-17T18:06:03+08:00">
+                2019-08-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/PAT/" itemprop="url" rel="index">
+                    <span itemprop="name">PAT</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="图的存储"><a href="#图的存储" class="headerlink" title="图的存储"></a>图的存储</h1><h2 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int G[maxn][maxn]</span><br></pre></td></tr></table></figure>
+<h2 id="邻接表"><a href="#邻接表" class="headerlink" title="邻接表"></a>邻接表</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; G[maxn];</span><br></pre></td></tr></table></figure>
+<h2 id="同时存放边权"><a href="#同时存放边权" class="headerlink" title="同时存放边权"></a>同时存放边权</h2><p>构造一个结构体Node，用vector存储<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;Node&gt; G[maxn];</span><br></pre></td></tr></table></figure></p>
+<p>输入图时需要声明一个临时Node变量tmp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Node tmp;</span><br><span class="line">tmp.v = 1; //编号</span><br><span class="line">tmp.w = 4; //边权</span><br><span class="line">G[1].push_back(tmp);</span><br></pre></td></tr></table></figure></p>
+<h1 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h1><h2 id="DFS"><a href="#DFS" class="headerlink" title="DFS"></a>DFS</h2><p>DFS统计连通图(分量)的结点个数(邻接表)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">void DFS(int v,int depth)</span><br><span class="line">&#123;</span><br><span class="line">	vis[v]=true;</span><br><span class="line">	for(int i=0;i&lt;n&amp;&amp;vis[i]==false;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(G[v][i]!=INF)</span><br><span class="line">		&#123;</span><br><span class="line">			DFS(i,depth+1);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void trave() </span><br><span class="line">&#123;</span><br><span class="line">	for(int i=0;i&lt;n&amp;&amp;vis[i]==false;i++)</span><br><span class="line">		DFS(i,1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意1034，二刷思路仍有问题，图的搜索与最小路径实现细节有所不同</strong></p>
+<h2 id="BFS"><a href="#BFS" class="headerlink" title="BFS"></a>BFS</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">void BFS(int v)</span><br><span class="line">&#123;</span><br><span class="line">	queue&lt;int&gt; q;</span><br><span class="line">	q.push(v);</span><br><span class="line">	pushed[v]=true; //表示v已入队</span><br><span class="line">	while(!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		int front = q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		for(int i=0;i&lt;n;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			if(pushed[i]==false&amp;&amp;G[v][i]!=INF)</span><br><span class="line">			&#123;</span><br><span class="line">				p1.push(i);</span><br><span class="line">				pushed[i]=true;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例题-【1076】.<br><strong>注意：1.不要把if语句内容写在循环里2.注意vis[i]=true是写在循环里的</strong></p>
+<h2 id="计算连通图个数—并查集"><a href="#计算连通图个数—并查集" class="headerlink" title="计算连通图个数—并查集"></a>计算连通图个数—并查集</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">int father[maxn];</span><br><span class="line">bool isfather[10010];</span><br><span class="line"></span><br><span class="line">//并查集初始化</span><br><span class="line">void init(int n)</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">		father[i]=i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//找到当前结点所在集合的父亲结点</span><br><span class="line">int findfather(int x)</span><br><span class="line">&#123;</span><br><span class="line">	int a = x;</span><br><span class="line">	while(x!=father[x])</span><br><span class="line">		x=father[x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//合并两个集合</span><br><span class="line">void Union(int a,int b)</span><br><span class="line">&#123;</span><br><span class="line">	int faA = findfather(a);</span><br><span class="line">	int faB = findfather(b);</span><br><span class="line">	if(faA!=faB)father[faA]=faB;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//计算连通图个数</span><br><span class="line">int calblock(int n)</span><br><span class="line">&#123;</span><br><span class="line">	int block=0;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		isroot[findfather(i)]=true;</span><br><span class="line">	&#125;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		block+=isroot[i];</span><br><span class="line">	&#125;</span><br><span class="line">	return block;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//注意：在图的输入时，需要将相邻的连接点Union一下</span><br></pre></td></tr></table></figure>
+<h1 id="最短路径（重中之重）"><a href="#最短路径（重中之重）" class="headerlink" title="最短路径（重中之重）"></a>最短路径（<strong>重中之重</strong>）</h1><h2 id="Dijkstra模板"><a href="#Dijkstra模板" class="headerlink" title="Dijkstra模板"></a>Dijkstra模板</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">int G[maxn][maxn];</span><br><span class="line">bool vis[maxn];</span><br><span class="line">vector&lt;int&gt; pre[maxn];</span><br><span class="line">int d[maxn]; //这里的d代表根结点到每个点的最短路径，是这类题第一评判标准；相应地还有诸如cost[maxn]等评判标准</span><br><span class="line">void D(int n)</span><br><span class="line">&#123;</span><br><span class="line">	fill(.....) //一系列数组的初始化</span><br><span class="line">	d[0]=0;</span><br><span class="line">	for(int i=0;i&lt;n;i++)  //n轮，每轮更新n个结点</span><br><span class="line">	&#123;</span><br><span class="line">		int u=-1,MIN=INF;</span><br><span class="line">		for(int j=0;j&lt;n;j++)</span><br><span class="line">		&#123;</span><br><span class="line">			if(vis[j]==false&amp;&amp;d[j]&lt;MIN)</span><br><span class="line">			&#123;</span><br><span class="line">				MIN=d[j];u=j;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if(u==-1)return;</span><br><span class="line">		vis[u]=true;</span><br><span class="line">		for(int v=0;v&lt;n;v++)</span><br><span class="line">		&#123;</span><br><span class="line">			if(vis[j]==false&amp;&amp;G[u][v]!=INF)</span><br><span class="line">			&#123;</span><br><span class="line">				if(d[u]+G[u][v]&lt;d[v])</span><br><span class="line">				&#123;</span><br><span class="line">					d[v]=d[u]+G[u][v];</span><br><span class="line">					pre[v].clear();</span><br><span class="line">					pre[v].push_back(u);</span><br><span class="line">				&#125;</span><br><span class="line">				else if(d[v]==d[u]+G[u][v])</span><br><span class="line">				&#123;</span><br><span class="line">					pre[v].push_back(u);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1018提供了另一种dfs的使用范例，即第二三标尺不能只用迪杰斯特拉算法评判，必须遍历整条路径才能得到最佳答案。<br>下面给出1018dfs部分的代码，注意，要在dfs里判断第二三标尺时，需要一个临时path来保存当前路径。<strong>注意pop_back()的位置！</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">void dfs(int v)</span><br><span class="line">&#123;</span><br><span class="line">	if(v==0)</span><br><span class="line">	&#123;</span><br><span class="line">		tmppath.push_back(v);</span><br><span class="line">		int need=0,take=0;</span><br><span class="line">		for(int i=tmppath.size()-1;i&gt;=0;i--)</span><br><span class="line">		&#123;</span><br><span class="line">			int id=tmppath[i];</span><br><span class="line">			if(num[id]&gt;0)take+=num[id];</span><br><span class="line">			else if(take&gt;abs(num[id]))take-=abs(num[id]);</span><br><span class="line">			else &#123;need+=abs(num[id])-take;take=0;&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		if(need&lt;minsent)</span><br><span class="line">		&#123;</span><br><span class="line">			minsent=need;</span><br><span class="line">			mintake=take;</span><br><span class="line">			bestpath=tmppath;</span><br><span class="line">		&#125;</span><br><span class="line">		else if(need==minsent&amp;&amp;take&lt;mintake)</span><br><span class="line">		&#123;</span><br><span class="line">			mintake=take;</span><br><span class="line">			bestpath=tmppath;</span><br><span class="line">		&#125;</span><br><span class="line">		tmppath.pop_back();</span><br><span class="line">	&#125;</span><br><span class="line">	tmppath.push_back(v);</span><br><span class="line">	for(int i=0;i&lt;pre[v].size();i++)</span><br><span class="line">		dfs(pre[v][i]);</span><br><span class="line">	tmppath.pop_back();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="图论知识"><a href="#图论知识" class="headerlink" title="图论知识"></a>图论知识</h2><p>这部分内容没什么套路，但题目本身并不会太难，重点是把握好题中概念，找到规律，考虑周全即可。甲级中出现的图论知识题目有：1122，1126，1142，1150。</p>
+<h1 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h1><p>拓扑排序的重要应用是判断一个给定的图是否为有向无环图。其基本思想是：设置一个队列，将所有<strong>入度</strong>为0的顶点加入队列中；然后遍历队列中的顶点，将以其为出发点的所有边删去（它的后继结点入度减一），直到队列为空。最后看加入队列中的顶点数量是否==n，若是，则为有向无环图；若不是，则图中有环。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">bool topplogicalsort()</span><br><span class="line">&#123;</span><br><span class="line">	int num=0;</span><br><span class="line">	queue&lt;int&gt; q;</span><br><span class="line">	for(int i=0;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		if(indegree[i]==0)</span><br><span class="line">			q.push(i);</span><br><span class="line">	&#125;</span><br><span class="line">	while(!q.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		int f=q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		printf(&quot;%d&quot;,f);</span><br><span class="line">		for(int i=0;i&lt;G[f].size();i++)</span><br><span class="line">		&#123;</span><br><span class="line">			int v=G[f][i];</span><br><span class="line">			indegree[v]--;</span><br><span class="line">			if(indegree[v]==0)</span><br><span class="line">				q.push(v);</span><br><span class="line">		&#125;</span><br><span class="line">		G[f].clear();   //如无必要，可以不写。</span><br><span class="line">		num++;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/07/11/深度学习-神经网络-mnist/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1133,590 +1753,6 @@ Q(\boldsymbol{a})=\sum_{i=1}^{N} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/04/29/大数据-eclipse安装hadoop插件/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jackkwin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="N's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/29/大数据-eclipse安装hadoop插件/" itemprop="url">大数据-eclipse安装hadoop插件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-29T19:27:37+08:00">
-                2019-04-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="安装eclipse"><a href="#安装eclipse" class="headerlink" title="安装eclipse"></a>安装eclipse</h1><p>与安装hadoop步骤相同，下载解压即可。下面记录如何设置eclipse桌面快捷方式。<br>在桌面新建eclipse.desktop（前面的eclipse可以自己取名，但一定要是.desktop后缀），编辑，填入以下内容：<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/29/大数据-eclipse安装hadoop插件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/04/17/大数据-hadoop安装/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jackkwin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="N's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/17/大数据-hadoop安装/" itemprop="url">大数据-hadoop安装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-17T20:03:24+08:00">
-                2019-04-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="安装java"><a href="#安装java" class="headerlink" title="安装java"></a>安装java</h1><p>下载地址：<a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a><br>下载后文件目录是到/home/downloads目录<br>进入到该目录，把tar包放到/usr/local/java下（需要新建）。<br>mv <strong><strong>.tar.gz /usr/local/java/<br>解压 tar -xzvf </strong></strong>.tar.gz<br>然后配置环境变量。这里我直接配置系统变量了。<br>vim /etc/profile<br>在末尾添加：<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/17/大数据-hadoop安装/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/03/27/大数据-节点配置/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jackkwin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="N's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/27/大数据-节点配置/" itemprop="url">大数据--节点配置</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-27T08:29:31+08:00">
-                2019-03-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/大数据/" itemprop="url" rel="index">
-                    <span itemprop="name">大数据</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="熟悉两个将来常用的linux命令"><a href="#熟悉两个将来常用的linux命令" class="headerlink" title="熟悉两个将来常用的linux命令"></a>熟悉两个将来常用的linux命令</h1><h3 id="管道命令"><a href="#管道命令" class="headerlink" title="管道命令"></a>管道命令</h3><p>管道标记为’|’。<br>比如查找前缀为sys的文件：<br>ls | grep “sys*”</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/27/大数据-节点配置/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/03/25/SpringMVC-几个配置文件/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jackkwin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="N's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/25/SpringMVC-几个配置文件/" itemprop="url">SpringMVC--几个配置文件</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-25T22:48:47+08:00">
-                2019-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/SpringMVC/" itemprop="url" rel="index">
-                    <span itemprop="name">SpringMVC</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="SpringMVC-xml"><a href="#SpringMVC-xml" class="headerlink" title="SpringMVC.xml"></a>SpringMVC.xml</h1><h3 id="1-component-scan"><a href="#1-component-scan" class="headerlink" title="1.component-scan"></a>1.component-scan</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;context:component-scan base-package=&quot;com.infinite.times&quot; use-default-filters=&quot;false&quot;&gt;</span><br><span class="line">	&lt;context:include-filter type=&quot;annotation&quot; expression=&quot;org.springframework.stereotype.Controller&quot;/&gt;</span><br><span class="line">	&lt;context:include-filter type=&quot;annotation&quot; expression=&quot;org.springframework.web.bind.annotation.ControllerAdvice&quot;/&gt;</span><br><span class="line">&lt;/context:component-scan&gt;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/03/25/SpringMVC-几个配置文件/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1767,7 +1803,7 @@ Q(\boldsymbol{a})=\sum_{i=1}^{N} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1778,7 +1814,7 @@ Q(\boldsymbol{a})=\sum_{i=1}^{N} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
