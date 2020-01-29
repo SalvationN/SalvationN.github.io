@@ -79,21 +79,17 @@
 
 
 
-<meta name="description" content="几个概念线性可分：对于相对完美的数据集，如果能用一条“直线”来分割数据集，则称该数据线性可分。分割超平面： 对于上述的n维数据，将那条“直线”称作分割超平面。注意，这里的直线通常并不指二维直线，分割超平面的维数应该是n-1维。支持向量： 由于对于同一个数据集，超平面可以有很多，所以需要找到一个较好的分割面。这里对较好的定义是：对于离分割面最近的点，它们离超平面应该尽可能远—如果离得最近的点都离超平">
+<meta name="description" content="动态内存分配 new语句用于申请动态存储空间：new T xxx； new语句返回值为T* delete释放数组：delete [] p;若没有[]，语法上不会有错误，但会产生内存碎片。  内联函数 在函数定义前面加”inline”关键字，就能定义一个内联函数 内联函数主要用于节省运行时间，将那些函数体本身较小的函数设置为内联函数，编译器会将该函数直接塞进调用语句处,即将函数翻译，直接当成语句来执">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习-SVM">
-<meta property="og:url" content="http://salvationn.github.io/2019/05/29/机器学习-SVM/index.html">
+<meta property="og:title" content="Cpp-进阶语法">
+<meta property="og:url" content="http://salvationn.github.io/2020/01/26/Cpp-进阶语法/index.html">
 <meta property="og:site_name" content="N&#39;s Home">
-<meta property="og:description" content="几个概念线性可分：对于相对完美的数据集，如果能用一条“直线”来分割数据集，则称该数据线性可分。分割超平面： 对于上述的n维数据，将那条“直线”称作分割超平面。注意，这里的直线通常并不指二维直线，分割超平面的维数应该是n-1维。支持向量： 由于对于同一个数据集，超平面可以有很多，所以需要找到一个较好的分割面。这里对较好的定义是：对于离分割面最近的点，它们离超平面应该尽可能远—如果离得最近的点都离超平">
+<meta property="og:description" content="动态内存分配 new语句用于申请动态存储空间：new T xxx； new语句返回值为T* delete释放数组：delete [] p;若没有[]，语法上不会有错误，但会产生内存碎片。  内联函数 在函数定义前面加”inline”关键字，就能定义一个内联函数 内联函数主要用于节省运行时间，将那些函数体本身较小的函数设置为内联函数，编译器会将该函数直接塞进调用语句处,即将函数翻译，直接当成语句来执">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://salvationn.github.io/2019/05/29/机器学习-SVM/1.png">
-<meta property="og:image" content="http://salvationn.github.io/2019/05/29/机器学习-SVM/2.png">
-<meta property="og:image" content="http://salvationn.github.io/2019/05/29/机器学习-SVM/3.png">
-<meta property="og:updated_time" content="2019-06-03T12:50:16.493Z">
+<meta property="og:updated_time" content="2020-01-29T11:07:39.121Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习-SVM">
-<meta name="twitter:description" content="几个概念线性可分：对于相对完美的数据集，如果能用一条“直线”来分割数据集，则称该数据线性可分。分割超平面： 对于上述的n维数据，将那条“直线”称作分割超平面。注意，这里的直线通常并不指二维直线，分割超平面的维数应该是n-1维。支持向量： 由于对于同一个数据集，超平面可以有很多，所以需要找到一个较好的分割面。这里对较好的定义是：对于离分割面最近的点，它们离超平面应该尽可能远—如果离得最近的点都离超平">
-<meta name="twitter:image" content="http://salvationn.github.io/2019/05/29/机器学习-SVM/1.png">
+<meta name="twitter:title" content="Cpp-进阶语法">
+<meta name="twitter:description" content="动态内存分配 new语句用于申请动态存储空间：new T xxx； new语句返回值为T* delete释放数组：delete [] p;若没有[]，语法上不会有错误，但会产生内存碎片。  内联函数 在函数定义前面加”inline”关键字，就能定义一个内联函数 内联函数主要用于节省运行时间，将那些函数体本身较小的函数设置为内联函数，编译器会将该函数直接塞进调用语句处,即将函数翻译，直接当成语句来执">
 
 
 
@@ -123,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://salvationn.github.io/2019/05/29/机器学习-SVM/">
+  <link rel="canonical" href="http://salvationn.github.io/2020/01/26/Cpp-进阶语法/">
 
 
 
 
 
-  <title>机器学习-SVM | N's Home</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Cpp-进阶语法 | N's Home</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -256,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/05/29/机器学习-SVM/">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2020/01/26/Cpp-进阶语法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jackkwin">
@@ -273,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">机器学习-SVM</h1>
+          <h1 class="post-title" itemprop="name headline">Cpp-进阶语法</h1>
         
 
         <div class="post-meta">
@@ -285,8 +281,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-29T08:32:07+08:00">
-                2019-05-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-26T18:36:43+08:00">
+                2020-01-26
               </time>
             
 
@@ -308,8 +304,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
                   </a>
                 </span>
 
@@ -350,32 +346,79 @@
       
 
       
-        <h1 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h1><p>线性可分：对于相对完美的数据集，如果能用一条“直线”来分割数据集，则称该数据线性可分。<br>分割超平面： 对于上述的n维数据，将那条“直线”称作分割超平面。注意，这里的直线通常并不指二维直线，分割超平面的维数应该是n-1维。<br>支持向量： 由于对于同一个数据集，超平面可以有很多，所以需要找到一个较好的分割面。这里对较好的定义是：对于离分割面最近的点，它们离超平面应该尽可能远—如果离得最近的点都离超平面足够远了，那么这个超平面就足够对数据集进行分割（分类）了。所以，<strong>支持向量就是指离分割面最近的那些点</strong>。</p>
-<h1 id="寻找最大间隔"><a href="#寻找最大间隔" class="headerlink" title="寻找最大间隔"></a>寻找最大间隔</h1><p>这里李航机器学习书中有两个概念：函数间隔和几何间隔。<br>函数间隔的定义是：</p>
-<script type="math/tex; mode=display">
-\hat{\gamma}=y\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b\right)=y f(\boldsymbol{x})</script><p>而几何间隔就是在函数间隔上除一个w的l2范数。<br>这里不再解释函数间隔和几何间隔的推导过程，因为实际上由点到直线的公式能很快的推导出几何间隔的表达式。由于几何间隔对参数w做了规范化处理，所以它更适合用来变大间隔大小。<br>首先回顾以下高中知识（我还真给忘了。。），点到直线距离公式：</p>
-<script type="math/tex; mode=display">
-d=\left|\frac{A x_{0}+B y_{0}+C z_{0}+D}{\sqrt{A^{2}+B^{2}+C^{2}}}\right|</script><p>其次要明确我们的超平面的表达式：</p>
-<script type="math/tex; mode=display">
-wx+b=0</script><p>在超平面一侧y为负，在另一侧y为正。用图片表示如下：<br><img src="/2019/05/29/机器学习-SVM/1.png"><br>因此，数据点到分割面的距离是：</p>
-<script type="math/tex; mode=display">
-d=\left|\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b\right|/||w||</script><p>为了方便优化，几何间隔在此基础上乘上了一个分类标签，由于y和wx+b是同号的（只要是正确分类），因此避免了绝对值问题。因此，求解最大间隔问题就变成了如下表达式：<br><img src="/2019/05/29/机器学习-SVM/2.png"><br>进一步，加上约束条件，就有：<br><img src="/2019/05/29/机器学习-SVM/3.png"><br>在这之后，《机器学习实战》中给出wx+b&gt;=1即间隔为1的限定，但没有给出具体证明，也不太好理解，参考了网上的资料( <a href="https://blog.csdn.net/waho001/article/details/78786796，https://www.zhihu.com/question/64568136/answer/257874428" target="_blank" rel="noopener">https://blog.csdn.net/waho001/article/details/78786796，https://www.zhihu.com/question/64568136/answer/257874428</a> )，现在大致理解了一些。<br>对于上述距离公式$\hat{\gamma}=y^{(i)}\left(w^{T} x^{(i)}+b\right)$，我们对两边同时除以$\hat{\gamma}$，就有</p>
-<script type="math/tex; mode=display">y^{(i)}\left(\left(\frac{w}{\hat{\gamma}}\right)^{T} x^{i}+\frac{b}{\hat{\gamma}}\right)=1</script><p>令$W=\left(\frac{w}{\hat{\gamma}}\right), B=\frac{b}{\hat{\gamma}}$，则有$y^{(i)}\left(W^{T} x^{i}+B\right)=1$，有趣的是：在除以$\hat{\gamma}$后，实际上两个参数不同的表达式实际上指的是同一个平面。进一步理解，对于w*x+b=0，对w和b进行等比缩放以后，得到的超平面是不变的。<br>同理，对于上面的约束条件，我们同时除以$\hat{\gamma}$，就得到了</p>
-<script type="math/tex; mode=display">
-y^{(i)}\left(\omega^{T} x^{(i)}+b\right) \geq 1, i=1, \cdots, n</script><p>这是得到的新的约束条件。<br>将上述式子简化得到所要求解的式子：</p>
-<script type="math/tex; mode=display">
-\max _{v_{0}, w} \frac{2}{\|\mathbf{w}\|}, \quad \text { subject to } \quad y_{i}\left(w_{0}+\mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}\right) \geq 1, \quad \forall i</script><p>为了方便优化，将求最大值转化为求最小值：</p>
-<script type="math/tex; mode=display">
-\min _{w_{0}, w} \frac{1}{2}\|\mathbf{w}\|^{2}, \quad \text { subject to } \quad y_{i}\left(w_{0}+\mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}\right) \geq 1, \quad \forall i</script><h1 id="对偶表示"><a href="#对偶表示" class="headerlink" title="对偶表示"></a>对偶表示</h1><p>采用拉格朗日乘子法，定义拉格朗日函数：</p>
-<script type="math/tex; mode=display">
-L\left(\boldsymbol{a}, w_{0}, \mathbf{w}\right)=\frac{1}{2} \mathbf{w}^{T} \mathbf{w}-\sum_{i=1}^{N} \alpha_{i}\left(y_{i}\left(w_{0}+\mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}\right)-1\right), \quad \alpha_{i} \geq 0</script><p>于是，问题转化为求使该函数最小的w0和w，分别对w0和w求偏导：</p>
-<script type="math/tex; mode=display">
-\begin{array}{c}{\frac{\partial L}{\partial \mathbf{w}}=0 \Rightarrow \mathbf{w}=\sum_{i=1}^{N} \alpha_{i} y_{i} \mathbf{x}_{i}} \\ {\frac{\partial L}{\partial w_{0}}=0 \Rightarrow \sum_{i=1}^{N} \alpha_{i} y_{i}=0}\end{array}</script><p>将上述两个等式导入：</p>
-<script type="math/tex; mode=display">
-\begin{aligned} L\left(\boldsymbol{a}, w_{0}, \mathbf{w}\right) &=\frac{1}{2} \mathbf{w}^{T} \mathbf{w}-\sum_{i=1}^{N} \alpha_{i}\left(y_{i}\left(w_{0}+\mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}\right)-1\right)_{0} \\ &=\frac{1}{2} \mathbf{w}^{T} \mathbf{w}-\sum_{i=1}^{N} \alpha_{i} y_{i} \mathbf{w}^{\mathrm{T}} \mathbf{x}_{i}-\sum_{i=1}^{N} \alpha_{i} y_{i} w_{0}+\sum_{i=1}^{N} \alpha_{i} \end{aligned}</script><script type="math/tex; mode=display">
-\begin{array}{l}{\mathbf{w}^{\prime} \mathbf{w}=\left(\sum_{i=1}^{N} \alpha_{i} y_{i} \mathbf{x}_{i}\right)^{T}\left(\sum_{j=1}^{N} \alpha_{j} y_{j} \mathbf{x}_{j}\right)=\sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} y_{i} y_{j} \mathbf{x}_{i}^{T} \mathbf{x}_{j}} \\ {\sum_{i=1}^{N} \alpha_{i} y_{i} \mathbf{w}^{T} \mathbf{x}_{i}=\sum_{i=1}^{N} \alpha_{i} y_{i}\left(\sum_{j=1}^{N} \alpha_{j} y_{j} \mathbf{x}_{j}\right)^{T} \mathbf{x}_{i}=\sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} y_{i} y_{j} \mathbf{x}_{i}^{T} \mathbf{x}_{j}}\end{array}</script><p>将等式带入整理就得到原问题的对偶问题：</p>
-<script type="math/tex; mode=display">
-Q(\boldsymbol{a})=\sum_{i=1}^{N} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1}^{N} \alpha_{i} \alpha_{j} y_{i} y_{j} \mathbf{x}_{i}^{T} \mathbf{x}_{j}</script>
+        <h1 id="动态内存分配"><a href="#动态内存分配" class="headerlink" title="动态内存分配"></a>动态内存分配</h1><ul>
+<li>new语句用于申请动态存储空间：new T xxx；</li>
+<li>new语句返回值为T*</li>
+<li>delete释放数组：delete [] p;若没有[]，语法上不会有错误，但会产生内存碎片。</li>
+</ul>
+<h1 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h1><ul>
+<li>在函数定义前面加”inline”关键字，就能定义一个内联函数</li>
+<li>内联函数主要用于节省运行时间，将那些函数体本身较小的函数设置为内联函数，编译器会将该函数直接塞进调用语句处,即将函数翻译，直接当成语句来执行，省去了函数调用、参数入栈出栈等步骤的时间</li>
+<li>内联函数存在的问题是可执行程序会相应变大<a id="more"></a>
+</li>
+</ul>
+<h1 id="复制构造函数"><a href="#复制构造函数" class="headerlink" title="复制构造函数"></a>复制构造函数</h1><ul>
+<li>形式：T::T( T&amp; )或T::T(const T &amp;)；其中，后者可以常量对象作为参数（注意：这里的参数必须是引用）</li>
+<li>如果自己没有定义构造函数，编译器会默认自动生成</li>
+<li>复制构造函数的适用范围：1.复制构造对象；2.某函数的<strong>形参</strong>包含类T时，当该函数被调用，则类T的复制构造函数被调用；3.某函数的<strong>返回</strong>包含类T时，当该函数返回时，类T的复制构造函数被调用</li>
+</ul>
+<h1 id="类型转换构造函数"><a href="#类型转换构造函数" class="headerlink" title="类型转换构造函数"></a>类型转换构造函数</h1><ul>
+<li>目的是实现类型的自动转换</li>
+<li>会生成一个临时的无名对象</li>
+<li>形式：名字同样是类名，但不是复制构造函数，那么就称为转换构造函数</li>
+<li>举例理解：虚数类有两个变量即实部和虚部，若用int型数据进行赋值，可通过类型转换构造函数将其转换为虚数类(如：将实部定义为传入的int型参数，虚部为0)</li>
+</ul>
+<h1 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h1><ul>
+<li>在类名前加“~“，即为析构函数</li>
+<li>如果对象是用new来生成的，若没有delete该对象，则不会调用析构函数</li>
+<li>若创建该类的一个数组，则该数组的容量有多大，析构函数就被调用多少次</li>
+<li>参数对象(形参)消亡也会导致析构函数被调用</li>
+<li>先初始化的后析构</li>
+</ul>
+<h1 id="友元"><a href="#友元" class="headerlink" title="友元"></a>友元</h1><ul>
+<li>一个类的友元函数可以访问该类的私有成员，声明在该类的函数体中</li>
+<li>友元类同理</li>
+<li>友元关系不能传递，不能继承</li>
+</ul>
+<h1 id="运算符重载"><a href="#运算符重载" class="headerlink" title="运算符重载"></a>运算符重载</h1><h2 id="基本概念和规则"><a href="#基本概念和规则" class="headerlink" title="基本概念和规则"></a>基本概念和规则</h2><ul>
+<li>形式：类名 operator运算符(const T&amp; )</li>
+<li>运算符重载为全局函数：T operator+(const T &amp;a,const T &amp;b)，此时若a+b则代表operator(a,b)</li>
+<li>运算符重载为成员函数：T T::operator-(const T &amp; b)，此时a-b代表a.operator(b)</li>
+<li>即<strong>重载为成员函数时，参数个数为运算符目数-1；重载为普通函数时，参数个数为运算符目数</strong>。</li>
+</ul>
+<h2 id="赋值运算符重载-以string为例"><a href="#赋值运算符重载-以string为例" class="headerlink" title="赋值运算符重载(以string为例)"></a>赋值运算符重载(以string为例)</h2><ul>
+<li>赋值运算符只能重载为成员函数</li>
+<li>格式：String &amp; operator=(const char * s)</li>
+<li>注意区分string s = “hello”和string s;s=”hello”这两条语句。前者是构造语句，因为等式两边类型不同会报错；后者是赋值语句，由于有运算符重载，所以后者可以运行。</li>
+</ul>
+<h2 id="浅拷贝与深拷贝"><a href="#浅拷贝与深拷贝" class="headerlink" title="浅拷贝与深拷贝"></a>浅拷贝与深拷贝</h2><ul>
+<li>当两个对象s1,s2对其进行s1=s2操作，所造成的结果是s1将直接指向s2所指向的存储空间，而s1原有的存储空间将被直接废弃；并且经过实验操作证明，在这种情况下，若先delete s1，将会导致s2无法访问，出现乱码(因为s1所指向空间在delete s1时就已经被释放了)</li>
+</ul>
+<h1 id="继承和派生"><a href="#继承和派生" class="headerlink" title="继承和派生"></a>继承和派生</h1><ul>
+<li>写法：类名:public 基类名</li>
+<li>基类对象存储位置在派生类新增成员变量之前</li>
+<li>派生类函数仍然无法访问基类的私有成员</li>
+<li>派生类中常有与基类成员函数同名的函数，并先做基类做过的事，再处理派生类的成员函数</li>
+<li>基类与派生类有同名变量时，缺省时访问派生类的变量，要访问基类的需要用”::”</li>
+<li><strong>protected</strong>成员可被派生类的<strong>成员函数</strong>，注意：不可以被派生类的对象访问</li>
+<li>派生类构造函数对基类<strong>私有</strong>成员函数的初始化：通过初始化列表，即在初始化函数参数列表之后添加:基类(基类的初始化列表)，即派生类初始化构造函数需要调用基类的构造函数；并且执行顺序仍然是先基类后派生类</li>
+<li>派生类对象可以赋值给基类对象</li>
+<li>派生类对象可以初始化基类的引用</li>
+<li>派生类对象地址可以赋值给基类指针(实际效果同上一条)</li>
+</ul>
+<h1 id="虚函数和多态"><a href="#虚函数和多态" class="headerlink" title="虚函数和多态"></a>虚函数和多态</h1><ul>
+<li>在<strong>类定义的函数声明</strong>中加上virtual关键字</li>
+<li>构造函数和静态成员函数不能是虚函数</li>
+<li>虚函数可以参与多态</li>
+<li>多态：一个对象p指向的虚函数究竟调用哪个类型(基类或是派生类)的虚函数取决于p指向那种类型的对象</li>
+<li>多态的一个重要应用是：将某<strong>虚</strong>函数参数设定为<strong>基类</strong>的指针，由于派生类对象地址可以赋值给基类指针，则当该函数被调用时，该指针指向的是某一个派生类，因此，利用虚函数的多态性质可以实现基类和派生类只需写一个函数，减少代码量。</li>
+<li>每个含有虚函数的类都默认生成一个虚函数表，因此，每个类在存储时都会存一个4字节的虚函数表地址</li>
+<li>通常情况下，通过基类的指针删除派生类对象时，<strong>只会调用基类</strong>的析构函数；但若把基类的析构函数声明为虚函数，则首先调用派生类的析构函数，然后调用基类的析构函数</li>
+<li>纯虚函数：无花括号(即无函数体)，直接=0；</li>
+<li>包含纯虚函数的类叫做抽象类；不能直接创建抽象类的对象，但可以创建抽象类的指针和引用；即A a不行，A * a可以；</li>
+<li>当一个类从抽象类派生而来，当仅当其实现了所有纯虚函数，它才能被称为非抽象类</li>
+</ul>
+
       
     </div>
     
@@ -399,8 +442,8 @@ Q(\boldsymbol{a})=\sum_{i=1}^{N} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/19/机器学习-Logistic回归/" rel="next" title="机器学习-Logistic回归">
-                <i class="fa fa-chevron-left"></i> 机器学习-Logistic回归
+              <a href="/2019/09/02/PAT甲级-各种基础问题/" rel="next" title="PAT甲级-各种基础问题">
+                <i class="fa fa-chevron-left"></i> PAT甲级-各种基础问题
               </a>
             
           </div>
@@ -408,10 +451,6 @@ Q(\boldsymbol{a})=\sum_{i=1}^{N} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/11/深度学习-神经网络-mnist/" rel="prev" title="深度学习-神经网络(mnist)">
-                深度学习-神经网络(mnist) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -543,7 +582,7 @@ Q(\boldsymbol{a})=\sum_{i=1}^{N} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#几个概念"><span class="nav-number">1.</span> <span class="nav-text">几个概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#寻找最大间隔"><span class="nav-number">2.</span> <span class="nav-text">寻找最大间隔</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对偶表示"><span class="nav-number">3.</span> <span class="nav-text">对偶表示</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#动态内存分配"><span class="nav-number">1.</span> <span class="nav-text">动态内存分配</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内联函数"><span class="nav-number">2.</span> <span class="nav-text">内联函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#复制构造函数"><span class="nav-number">3.</span> <span class="nav-text">复制构造函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类型转换构造函数"><span class="nav-number">4.</span> <span class="nav-text">类型转换构造函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#析构函数"><span class="nav-number">5.</span> <span class="nav-text">析构函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#友元"><span class="nav-number">6.</span> <span class="nav-text">友元</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运算符重载"><span class="nav-number">7.</span> <span class="nav-text">运算符重载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本概念和规则"><span class="nav-number">7.1.</span> <span class="nav-text">基本概念和规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#赋值运算符重载-以string为例"><span class="nav-number">7.2.</span> <span class="nav-text">赋值运算符重载(以string为例)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浅拷贝与深拷贝"><span class="nav-number">7.3.</span> <span class="nav-text">浅拷贝与深拷贝</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承和派生"><span class="nav-number">8.</span> <span class="nav-text">继承和派生</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#虚函数和多态"><span class="nav-number">9.</span> <span class="nav-text">虚函数和多态</span></a></li></ol></div>
             
 
           </div>

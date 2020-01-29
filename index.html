@@ -249,6 +249,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2020/01/26/Cpp-进阶语法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jackkwin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="N's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/01/26/Cpp-进阶语法/" itemprop="url">Cpp-进阶语法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-26T18:36:43+08:00">
+                2020-01-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="动态内存分配"><a href="#动态内存分配" class="headerlink" title="动态内存分配"></a>动态内存分配</h1><ul>
+<li>new语句用于申请动态存储空间：new T xxx；</li>
+<li>new语句返回值为T*</li>
+<li>delete释放数组：delete [] p;若没有[]，语法上不会有错误，但会产生内存碎片。</li>
+</ul>
+<h1 id="内联函数"><a href="#内联函数" class="headerlink" title="内联函数"></a>内联函数</h1><ul>
+<li>在函数定义前面加”inline”关键字，就能定义一个内联函数</li>
+<li>内联函数主要用于节省运行时间，将那些函数体本身较小的函数设置为内联函数，编译器会将该函数直接塞进调用语句处,即将函数翻译，直接当成语句来执行，省去了函数调用、参数入栈出栈等步骤的时间</li>
+<li>内联函数存在的问题是可执行程序会相应变大
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/01/26/Cpp-进阶语法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </li></ul></div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/09/02/PAT甲级-各种基础问题/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -667,7 +821,7 @@
 <p>注意区分一下树的高度和结点的深度啊，抄的时候都能抄错。</p>
 <h1 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h1><p>堆排序的重点是记住它是一个特殊的完全二叉树，大项堆的双亲结点比孩子结点大，小项堆的双亲结点比孩子结点小。<br>甲级的堆应该不会特别难，考到了也就是建堆，套模板就好。建堆（自顶向下）的核心思想是：按照原始顺序输入数据存在数组中，从最靠右下的非叶子结点开始，检查其与其孩子的大小，若比孩子小，就交换二者位置，交换后仍需检查它与交换后的孩子的大小，以此类推，直到满足堆的定义。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">//大项堆的构建及堆排序</span><br><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int heap[200];</span><br><span class="line">void downjust(int low,int high)</span><br><span class="line">&#123;</span><br><span class="line">	int i=low,j=i*2;</span><br><span class="line">	while(j&lt;=high)</span><br><span class="line">	&#123;</span><br><span class="line">		if(j+1&lt;=high&amp;&amp;heap[j]&lt;heap[j+1])</span><br><span class="line">			j=j+1;</span><br><span class="line">		if(heap[i]&lt;heap[j])</span><br><span class="line">		&#123;</span><br><span class="line">			swap(heap[i],heap[j]);</span><br><span class="line">			i=j;</span><br><span class="line">			j=j*2;</span><br><span class="line">		&#125;</span><br><span class="line">		else break;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int n;</span><br><span class="line">void create()</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=n/2;i&gt;=1;i--)</span><br><span class="line">		downjust(i,n);</span><br><span class="line">&#125;</span><br><span class="line">void heapsort()</span><br><span class="line">&#123;</span><br><span class="line">	create();</span><br><span class="line">	for(int i=n;i&gt;1;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		swap(heap[i],heap[1]);</span><br><span class="line">		downjust(1,i-1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	cin&gt;&gt;n;</span><br><span class="line">	for(int i=1;i&lt;=n;i++)</span><br><span class="line">		cin&gt;&gt;heap[i];</span><br><span class="line">	heapsort();</span><br><span class="line">	for(int i=1;i&lt;=n;i++)cout&lt;&lt;heap[i]&lt;&lt;&quot; &quot;;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="中缀表达式"><a href="#中缀表达式" class="headerlink" title="中缀表达式"></a>中缀表达式</h1><p>核心思想：当前结点不是<strong>根结点或叶子结点</strong>时，递归左孩子前要输出“（”；若<strong>不是根结点且有右孩子</strong>，则递归右孩子后输出“）”。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">void inorder(int v)</span><br><span class="line">&#123;</span><br><span class="line">	if(node[v].left!=-1)</span><br><span class="line">	&#123;</span><br><span class="line">		if(v!=root)ans+=&quot;(&quot;;</span><br><span class="line">		inorder(node[v].left);</span><br><span class="line">	&#125;</span><br><span class="line">	else if(node[v].right!=-1&amp;&amp;v!=root)ans+=&quot;(&quot;;</span><br><span class="line">	ans+=node[v].data;</span><br><span class="line">	if(node[v].right!=-1)</span><br><span class="line">	&#123;</span><br><span class="line">		inorder(node[v].right);</span><br><span class="line">		if(v!=root)ans+=&quot;)&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">	return;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
+<h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">using namespace std;</span><br><span class="line">int n,father[100];</span><br><span class="line">bool isroot[100];</span><br><span class="line">void init()</span><br><span class="line">&#123;</span><br><span class="line">	for(int i=0;i&lt;n;i++)</span><br><span class="line">		father[i]=i;</span><br><span class="line">&#125;</span><br><span class="line">int findfather(int x)</span><br><span class="line">&#123;</span><br><span class="line">	while(father[x]!=x)</span><br><span class="line">		x=father[x];</span><br><span class="line">	return x;</span><br><span class="line">&#125;</span><br><span class="line">void Union(int a,int b)</span><br><span class="line">&#123;</span><br><span class="line">	int faA=findfather(a);</span><br><span class="line">	int faB=findfather(b);</span><br><span class="line">	if(faA!=faB)father[faB]=faA;</span><br><span class="line">&#125;</span><br><span class="line">int countfather()</span><br><span class="line">&#123;</span><br><span class="line">	int cnt=0;</span><br><span class="line">	for(int i=0;i&lt;n;i++)</span><br><span class="line">		isroot[findfather(i)]=true;</span><br><span class="line">	for(int i=0;i&lt;n;i++)</span><br><span class="line">		if(isroot[i])cnt++;</span><br><span class="line">	return cnt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
           
         
       
@@ -1607,152 +1761,6 @@ Q(\boldsymbol{a})=\sum_{i=1}^{N} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://salvationn.github.io/2019/05/09/机器学习-numpy的温习/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jackkwin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="N's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/09/机器学习-numpy的温习/" itemprop="url">机器学习-numpy的温习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-09T20:52:34+08:00">
-                2019-05-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>服务外包没有获奖，有些小失望，免毕设之路遥遥无期。一度怀疑自己的能力，身在一所自己看不上的学校，却被这所学校的学生“疯狂碾压”，比赛比不了，工作找不到，成绩不占优……sigh……<br>但信念一直在的，希望自己的毅力对得起自视清高的态度。重新开始机器学习之路吧，踏踏实实毫不功利地学进去，会有收获的。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/05/09/机器学习-numpy的温习/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </p></div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1803,7 +1811,7 @@ Q(\boldsymbol{a})=\sum_{i=1}^{N} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1814,7 +1822,7 @@ Q(\boldsymbol{a})=\sum_{i=1}^{N} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -1862,7 +1870,7 @@ Q(\boldsymbol{a})=\sum_{i=1}^{N} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{N} \sum_{j=1
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
